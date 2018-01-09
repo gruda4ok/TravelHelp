@@ -135,7 +135,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewC
         let viewController = accoutnKit.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController
         viewController.enableSendToFacebook = true
         self.prepareLoginViewController(viewController)
-        //sender.goRight()
+        sender.goRight()
         //sender.puls()
 
         self.present(viewController as! UIViewController, animated: true, completion: nil)

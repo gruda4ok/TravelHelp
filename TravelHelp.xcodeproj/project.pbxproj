@@ -11,7 +11,6 @@
 		451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */; };
 		45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45524B631FE9E6B400996F64 /* AnimationButton.swift */; };
 		455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B38C31FE73A900084DC35 /* MenuViewController.swift */; };
-		457DB93F1FFFBE8F0024E908 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 457DB93E1FFFBE8F0024E908 /* GoogleService-Info.plist */; };
 		457DB9441FFFCE0C0024E908 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB9431FFFCE0C0024E908 /* Users.swift */; };
 		45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1477F1FE725C100666CB8 /* AppDelegate.swift */; };
 		45F147821FE725C100666CB8 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F147811FE725C100666CB8 /* RegistrationViewController.swift */; };
@@ -19,13 +18,13 @@
 		45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45F147861FE725C100666CB8 /* TravelHelp.xcdatamodeld */; };
 		45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F147891FE725C100666CB8 /* Assets.xcassets */; };
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
+		45FB77DC200451DD004E6347 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45FB77DB200451DC004E6347 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNewPersonViewController.swift; sourceTree = "<group>"; };
 		45524B631FE9E6B400996F64 /* AnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationButton.swift; sourceTree = "<group>"; };
 		455B38C31FE73A900084DC35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		457DB93E1FFFBE8F0024E908 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		457DB9431FFFCE0C0024E908 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		45F1477C1FE725C100666CB8 /* TravelHelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F1477F1FE725C100666CB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +34,7 @@
 		45F147891FE725C100666CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45F1478C1FE725C100666CB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45F1478E1FE725C100666CB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45FB77DB200451DC004E6347 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DA31F6EBE94B2C681308FC6 /* Pods_TravelHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A26129691EB662A5DF3E71C /* Pods-TravelHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.debug.xcconfig"; sourceTree = "<group>"; };
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		45F1477E1FE725C100666CB8 /* TravelHelp */ = {
 			isa = PBXGroup;
 			children = (
-				457DB93E1FFFBE8F0024E908 /* GoogleService-Info.plist */,
+				45FB77DB200451DC004E6347 /* GoogleService-Info.plist */,
 				45F147861FE725C100666CB8 /* TravelHelp.xcdatamodeld */,
 				45F1478E1FE725C100666CB8 /* Info.plist */,
 				457DB9451FFFCE120024E908 /* Model */,
@@ -209,7 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */,
-				457DB93F1FFFBE8F0024E908 /* GoogleService-Info.plist in Resources */,
+				45FB77DC200451DD004E6347 /* GoogleService-Info.plist in Resources */,
 				45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */,
 				45F147851FE725C100666CB8 /* Main.storyboard in Resources */,
 			);
