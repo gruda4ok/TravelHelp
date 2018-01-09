@@ -167,5 +167,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewC
         performSegue(withIdentifier: "RegNewPerson", sender: nil)
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMwnu"{
+            let dvc = segue.destination as! RegistrationNewPersonViewController
+            dvc.emailTextField.text = emailTextField.text
+        }
+    }
 }
 
