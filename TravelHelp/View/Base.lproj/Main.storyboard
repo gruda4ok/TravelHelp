@@ -277,7 +277,6 @@
                         <outlet property="emailTextField" destination="410-U4-52U" id="IPf-ci-2Jg"/>
                         <outlet property="nameTextField" destination="ZqW-Sv-y1D" id="kgp-bW-b9d"/>
                         <outlet property="passwordTextField" destination="Jth-Zs-GlR" id="6uD-mm-e8E"/>
-                        <segue destination="OuY-i1-sNX" kind="show" identifier="ShowMenu2" id="xH2-De-GDo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hce-Wv-OX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -285,7 +284,4 @@
             <point key="canvasLocation" x="137" y="842"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="xH2-De-GDo"/>
-    </inferredMetricsTieBreakers>
 </document>

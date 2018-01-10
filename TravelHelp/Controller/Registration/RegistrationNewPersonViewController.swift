@@ -42,7 +42,7 @@ class RegistrationNewPersonViewController: UIViewController {
             userRef.setValue(["email": user?.email])
             //userRef.setValue(["name": user?.displayName])
         }
-        performSegue(withIdentifier: "ShowMenu2", sender: nil)
+       dismiss(animated: true, completion: nil)
 
         
     }
