@@ -11,14 +11,16 @@ import AccountKit
 
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var logOut: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var accoutnKit: AKFAccountKit!
     let menuArray: Array<String> = ["Travel", "routes"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       tableView.tableFooterView = UIView()
+        
+        
+        tableView.tableFooterView = UIView()
         
         if accoutnKit == nil{
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
@@ -38,6 +40,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel?.text = menuArray[indexPath.row]
         
         return  cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "ShowTravelTable", sender: nil)
+        }
+        if indexPath.row == 1 {
+            performSegue(withIdentifier: "ShowRoutes", sender: nil)
+        }
     }
     
     

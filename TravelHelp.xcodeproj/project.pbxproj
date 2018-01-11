@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2BA9E12974F482BA54AA9D59 /* Pods_TravelHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA31F6EBE94B2C681308FC6 /* Pods_TravelHelp.framework */; };
 		451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */; };
+		4537E56020075E8700C2627B /* TravelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E55F20075E8700C2627B /* TravelBase.swift */; };
+		45521F782005E2A600775E10 /* TravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45521F772005E2A600775E10 /* TravelViewController.swift */; };
+		45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45521F792005E97600775E10 /* RoutesViewController.swift */; };
 		45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45524B631FE9E6B400996F64 /* AnimationButton.swift */; };
 		455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B38C31FE73A900084DC35 /* MenuViewController.swift */; };
 		457DB9441FFFCE0C0024E908 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB9431FFFCE0C0024E908 /* Users.swift */; };
@@ -23,6 +26,9 @@
 
 /* Begin PBXFileReference section */
 		451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNewPersonViewController.swift; sourceTree = "<group>"; };
+		4537E55F20075E8700C2627B /* TravelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBase.swift; sourceTree = "<group>"; };
+		45521F772005E2A600775E10 /* TravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewController.swift; sourceTree = "<group>"; };
+		45521F792005E97600775E10 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
 		45524B631FE9E6B400996F64 /* AnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationButton.swift; sourceTree = "<group>"; };
 		455B38C31FE73A900084DC35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		457DB9431FFFCE0C0024E908 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -66,6 +72,8 @@
 			children = (
 				45FBE02B2002AE2C00389ACC /* Registration */,
 				455B38C31FE73A900084DC35 /* MenuViewController.swift */,
+				45521F772005E2A600775E10 /* TravelViewController.swift */,
+				45521F792005E97600775E10 /* RoutesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				457DB9431FFFCE0C0024E908 /* Users.swift */,
+				4537E55F20075E8700C2627B /* TravelBase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,8 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */,
+				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
 				45F147821FE725C100666CB8 /* RegistrationViewController.swift in Sources */,
+				45521F782005E2A600775E10 /* TravelViewController.swift in Sources */,
 				45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */,
+				4537E56020075E8700C2627B /* TravelBase.swift in Sources */,
 				451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */,
 				455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */,
 				457DB9441FFFCE0C0024E908 /* Users.swift in Sources */,

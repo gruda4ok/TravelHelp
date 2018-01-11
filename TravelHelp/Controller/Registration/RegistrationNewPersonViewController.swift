@@ -43,8 +43,6 @@ class RegistrationNewPersonViewController: UIViewController {
             //userRef.setValue(["name": user?.displayName])
         }
        dismiss(animated: true, completion: nil)
-
-        
     }
     
 }

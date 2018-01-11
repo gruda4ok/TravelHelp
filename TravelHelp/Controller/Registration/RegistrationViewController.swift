@@ -51,33 +51,29 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewC
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        
         logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
-        // Shadow
-//        logInEmail.layer.shadowOffset = CGSize(width: 5, height: 5)
-//        logInEmail.layer.shadowOpacity = 0.3
-//        logInEmail.layer.shadowRadius = 5
-//        logInEmail.layer.shadowColor = UIColor(red:44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0).cgColor
-//
-//        logInPhone.layer.shadowOffset = CGSize(width: 5, height: 5)
-//        logInPhone.layer.shadowOpacity = 0.8
-//        logInPhone.layer.shadowRadius = 0
-//        logInPhone.layer.shadowColor = UIColor.black.cgColor
-        
-        
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
+        
         if accoutnKit.currentAccessToken != nil {
                         DispatchQueue.main.async(execute: {
                             self.performSegue(withIdentifier: "ShowMenu", sender: self)
                         })
 //            self.performSegue(withIdentifier: "ShowMenu", sender: self)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        passwordTextField.text = ""
+        emailTextField.text = ""
     }
     
     
@@ -96,9 +92,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewC
         
     }
     
-    
     @objc func keyBoardDidHide(){
-        //(self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
+        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
