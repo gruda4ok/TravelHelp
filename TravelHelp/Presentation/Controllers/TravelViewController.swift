@@ -15,8 +15,8 @@ class TravelViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var createNewTravel: AnimationButton!
     
     var travel: Array<TravelBase> = []
-    var user: Users!
-    var ref: DatabaseReference!
+    var user: UserModel? = AutorizationService.shared.localUser
+    var ref: DatabaseReference! = Database.database().reference().child("users")
     var travelId: String?
     var travelTitle: String = "1"
     
@@ -28,23 +28,21 @@ class TravelViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.tableFooterView = UIView()
         createNewTravel.layer.cornerRadius = createNewTravel.frame.height / 2
         
+//        guard let currentUser = Auth.auth().currentUser else { return }
+//
+//        user = UserModel(user: currentUser)
+//        ref = Database.database().reference(withPath: "users").child(String(describing: user?.uid)).child("tickets")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        queue.async(flags: .barrier) {
-            self.travelId = String(arc4random_uniform(100)) + (self.user?.uid)!
-            self.ref.observe(.value) { [weak self](snapshot) in
-                var _travel = Array<TravelBase>()
-                for item in snapshot.children{
-                    let traveld = TravelBase(snapshot: item as! DataSnapshot)
-                    _travel.append(traveld)
-                }
-                self?.travel = _travel
-                self?.tableView.reloadData()
-            }
-        }
+        
+        guard let user = user else {return}
 
+            travelId = String(arc4random_uniform(100)) + user.uid
+            DatabaseService.shared.snapshot()
+            tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,12 +51,13 @@ class TravelViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let travelTitle = travel[indexPath.row].travelId
+       // let travelTitle = travel[indexPath.row].travelId
         cell.textLabel?.text = travelTitle
         return cell
     }
     
     @IBAction func createNewTravel(_ sender: AnimationButton) {
+        //performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
     
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,7 @@ import UIKit
 import AccountKit
 import Firebase
 
-class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewControllerDelegate {
+class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControllerDelegate {
 
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -143,19 +143,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate, AKFViewC
             //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] ( user, error) in
-            if error != nil{
-                //self?.displayWarnigLabel(withText: "Error occured")
-                
-                return
-            }
-            if user != nil{
-                self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
-                return
-            }
-           // self?.displayWarnigLabel(withText: "No such user")
+        
+        AutorizationService.shared.loginUser(email: email, password: password){  [weak self] in
+            self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
         }
-
     }
     
     @IBAction func registrationButton(_ sender: UIButton) {

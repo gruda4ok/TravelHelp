@@ -9,16 +9,25 @@
 import Foundation
 import Firebase
 
-struct Users {
+class UserModel {
     
     let uid:String
     let email:String
-    let name: String
+   
     
-    init(user: User) {
+    init?(user: User?) {
+    
+        guard
+            let user = user,
+            let email = user.email
+        
+        else {
+            return nil
+        }
+    
         self.uid = user.uid
-        self.email = user.email!
-        self.name = user.displayName!
+        self.email = email
+    
     }
     
 }
