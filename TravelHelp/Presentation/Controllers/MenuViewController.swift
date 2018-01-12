@@ -18,14 +18,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         tableView.tableFooterView = UIView()
-        
         if accoutnKit == nil{
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
         }
-            
         // Do any additional setup after loading the view.
     }
     
@@ -34,11 +30,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return menuArray.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = menuArray[indexPath.row]
-        
         return  cell
     }
     

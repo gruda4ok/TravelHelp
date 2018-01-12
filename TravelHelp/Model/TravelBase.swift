@@ -13,13 +13,17 @@ import Firebase
 struct TravelBase {
     let travelId: String?
     let userId: String?
-    let date: String?
+    let dateStart: String?
+    let endDate: String?
+    let discription: String?
     var ref: DatabaseReference!
     
-    init( travelId: String, userId: String, date: String) {
+    init( travelId: String, userId: String, dateStart: String, endDate: String, discription: String) {
         self.travelId = travelId
         self.userId = userId
-        self.date = date
+        self.dateStart = dateStart
+        self.endDate = endDate
+        self.discription = discription
         self.ref = nil
     }
 
@@ -27,11 +31,17 @@ struct TravelBase {
         let snapshotValue = snapshot.value as! [String: String]
         travelId = snapshotValue["travel"]
         userId = snapshotValue["userId"]
-        date = snapshotValue["date"]
+        dateStart = snapshotValue["dateStart"]
+        endDate = snapshotValue["endDate"]
+        discription = snapshotValue["discription"]
         ref = snapshot.ref
     }
     
     func convertToDictionary() -> Any {
-        return ["travelId":travelId, "userId": userId, "date": date]
+        return ["travelId":travelId,
+                "userId": userId,
+                "dateStart": dateStart,
+                "endDaew": endDate,
+                "discription": discription ]
     }
 }

@@ -258,27 +258,16 @@
         <scene sceneID="dCF-RY-62f">
             <objects>
                 <viewController id="JPF-X9-kvb" customClass="CreateNewTravelViewController" customModule="TravelHelp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4F3-j0-QJf">
+                    <view key="view" contentMode="scaleToFill" id="4F3-j0-QJf" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnG-KQ-t5R">
                                 <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tty-CH-5cR">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tty-CH-5cR" customClass="UIScrollView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99k-AW-iPg" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
-                                                <rect key="frame" x="81" y="842" width="212" height="60"/>
-                                                <color key="backgroundColor" red="0.02747282748471698" green="0.027378177917778745" blue="0.027661008883248739" alpha="0.61245184075342463" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <state key="normal" title="Create">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="create:" destination="JPF-X9-kvb" eventType="touchUpInside" id="Uht-c4-B24"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name travel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVp-4U-mLn">
                                                 <rect key="frame" x="20" y="40" width="134" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -314,13 +303,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rir-6U-o1q">
-                                                <rect key="frame" x="139" y="131" width="208" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AI-Gh-T7x">
                                                 <rect key="frame" x="20" y="183" width="129" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -332,15 +314,32 @@
                                                 <rect key="frame" x="170" y="185" width="177" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzb-Fc-Akv">
+                                                <rect key="frame" x="143" y="129" width="208" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99k-AW-iPg" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
+                                                <rect key="frame" x="81" y="398" width="212" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.02747282748471698" green="0.027378177917778745" blue="0.027661008883248739" alpha="0.61245184075342463" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                <state key="normal" title="Create">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="create:" destination="JPF-X9-kvb" eventType="touchUpInside" id="aOR-Yh-IPd"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="99k-AW-iPg" secondAttribute="trailing" constant="82" id="4II-Mq-cJE"/>
-                                            <constraint firstAttribute="bottom" secondItem="99k-AW-iPg" secondAttribute="bottom" constant="98" id="BSu-Mi-QNg"/>
                                             <constraint firstAttribute="height" constant="1000" id="V8a-w1-rtL"/>
-                                            <constraint firstItem="99k-AW-iPg" firstAttribute="leading" secondItem="Tty-CH-5cR" secondAttribute="leading" constant="81" id="bMs-7s-yMQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -364,7 +363,11 @@
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="create" destination="99k-AW-iPg" id="BwC-hQ-r6D"/>
+                        <outlet property="createButton" destination="99k-AW-iPg" id="X5M-3T-TrB"/>
+                        <outlet property="dateStartTextField" destination="sqd-It-Ygo" id="cWH-SE-Hpv"/>
+                        <outlet property="discriptionTextField" destination="sL6-U1-cTa" id="um4-tO-w8P"/>
+                        <outlet property="endDateTravelTextField" destination="xzb-Fc-Akv" id="b0L-0i-xm9"/>
+                        <outlet property="nameTravelTextField" destination="5RD-JB-D63" id="kMU-Dq-lRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYB-mY-m5e" userLabel="First Responder" sceneMemberID="firstResponder"/>

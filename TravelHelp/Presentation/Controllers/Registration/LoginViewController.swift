@@ -40,7 +40,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
        
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
-            
         }
         Auth.auth().addStateDidChangeListener { [weak self](auth, user) in
             if user != nil{
@@ -58,20 +57,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-        
         if accoutnKit.currentAccessToken != nil {
                         DispatchQueue.main.async(execute: {
                             self.performSegue(withIdentifier: "ShowMenu", sender: self)
                         })
-//            self.performSegue(withIdentifier: "ShowMenu", sender: self)
+            self.performSegue(withIdentifier: "ShowMenu", sender: self)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         passwordTextField.text = ""
         emailTextField.text = ""
     }
@@ -80,26 +75,23 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
     func prepareLoginViewController(_ loginViewController: AKFViewController){
         loginViewController.delegate = self
         loginViewController.setAdvancedUIManager(nil)
-    
-        
     }
     
     @objc func keyBoardDidShow(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
         let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
-        
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height - 100), animated: true)
-        
     }
+    
     
     @objc func keyBoardDidHide(){
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
-        
         return true
     }
     
@@ -116,30 +108,21 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
         let viewController = accoutnKit.viewControllerForEmailLogin(withEmail: nil, state: inputState) as AKFViewController
         viewController.enableSendToFacebook = true
         self.prepareLoginViewController(viewController)
-        //sender.goLeft()
-        //sender.shake()
         self.present(viewController as! UIViewController, animated: true, completion: nil)
-        
-       
-        
     }
     
     @IBAction func logInPhone(_ sender: AnimationButton) {  // Login  with phone number
-        
         let inputState = UUID().uuidString
         let viewController = accoutnKit.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController
         viewController.enableSendToFacebook = true
         self.prepareLoginViewController(viewController)
-        sender.goRight()
-        //sender.puls()
-
         self.present(viewController as! UIViewController, animated: true, completion: nil)
-        
-        
-        
     }
+    
     @IBAction func loginButton(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text, email != "",password != "" else {
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text,
+            email != "",password != "" else {
             //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }

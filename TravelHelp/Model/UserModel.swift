@@ -13,22 +13,17 @@ class UserModel {
     
     let uid:String
     let email:String
-   
-    
+
     init?(user: User?) {
-    
         guard
             let user = user,
             let email = user.email
-        
         else {
             return nil
         }
         self.uid = user.uid
         self.email = email
-    
     }
-    
 }
 
 
