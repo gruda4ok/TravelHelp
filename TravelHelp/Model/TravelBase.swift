@@ -11,26 +11,27 @@ import Foundation
 import Firebase
 
 struct TravelBase {
-    //let travelId: String
-    //let userId: String
-    let ref: DatabaseReference!
+    let travelId: String?
+    let userId: String?
+    let date: String?
+    var ref: DatabaseReference!
     
-    init( userId: String) {
-       // self.travelId = travelId
-        //self.userId = userId
+    init( travelId: String, userId: String, date: String) {
+        self.travelId = travelId
+        self.userId = userId
+        self.date = date
         self.ref = nil
-        
     }
 
     init(snapshot: DataSnapshot) {
-        let snapshotValue = snapshot.value as! [String: AnyObject]
-        //travelId = snapshotValue["travel"] as! String
-        //userId = snapshotValue["userId"] as! String
+        let snapshotValue = snapshot.value as! [String: String]
+        travelId = snapshotValue["travel"]
+        userId = snapshotValue["userId"]
+        date = snapshotValue["date"]
         ref = snapshot.ref
     }
     
-//    func convertToDictionary() -> Any {
-//        return [,"userId": userId]
-//    }
-    
+    func convertToDictionary() -> Any {
+        return ["travelId":travelId, "userId": userId, "date": date]
+    }
 }

@@ -19,29 +19,16 @@ class TravelViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ref: DatabaseReference! = Database.database().reference().child("users")
     var travelId: String?
     var travelTitle: String = "1"
-    
-    let queue = DispatchQueue(label: "queue", qos: .userInitiated, attributes: .concurrent)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.tableFooterView = UIView()
         createNewTravel.layer.cornerRadius = createNewTravel.frame.height / 2
-        
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//
-//        user = UserModel(user: currentUser)
-//        ref = Database.database().reference(withPath: "users").child(String(describing: user?.uid)).child("tickets")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        guard let user = user else {return}
-
-            travelId = String(arc4random_uniform(100)) + user.uid
-            DatabaseService.shared.snapshot()
+            DatabaseService.shared.snapshot(user: user)
             tableView.reloadData()
     }
     
@@ -50,14 +37,15 @@ class TravelViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-       // let travelTitle = travel[indexPath.row].travelId
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "CellTravel", for: indexPath)
+        let travelTitle = travel[indexPath.row].travelId
         cell.textLabel?.text = travelTitle
+        cell.textLabel?.textColor = UIColor.black
         return cell
     }
     
     @IBAction func createNewTravel(_ sender: AnimationButton) {
-        //performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        performSegue(withIdentifier: "CreateTravel", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

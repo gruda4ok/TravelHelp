@@ -16,12 +16,19 @@ class RegistrationNewPersonViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func registrationButton(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text, email != "",password != "" else {
+        guard
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let name = nameTextField.text,
+            email != "",
+            password != "",
+            name != ""
+            else {
             //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }
         
-        AutorizationService.shared.registerUser(email: email, password: password)
+        AutorizationService.shared.registerUser(email: email, password: password, name: name)
         
        dismiss(animated: true, completion: nil)
     }

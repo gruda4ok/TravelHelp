@@ -24,7 +24,6 @@ class UserModel {
         else {
             return nil
         }
-    
         self.uid = user.uid
         self.email = email
     
