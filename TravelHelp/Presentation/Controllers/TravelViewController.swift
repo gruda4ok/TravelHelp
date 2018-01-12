@@ -56,14 +56,14 @@ extension TravelViewController: UITableViewDataSource{
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowSomeTravel", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowSomeTravel"{
-            let dvc = segue.destination as! TravelSomeViewController
-            dvc.travelArray = travels
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "ShowSomeTravel", sender: nil)
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ShowSomeTravel"{
+//            let dvc = segue.destination as! TravelSomeViewController
+//            dvc.travelArray = travels
+//        }
+//    }
 }

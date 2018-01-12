@@ -12,6 +12,7 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
 
     var user: UserModel? = AutorizationService.shared.localUser
     
+   
     @IBOutlet weak var createButton: AnimationButton!
     @IBOutlet weak var nameTravelTextField: UITextField!
     @IBOutlet weak var dateStartTextField: UITextField!
@@ -57,14 +58,18 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
         endDateTravelTextField.endEditing(true)
         discriptionTextField.endEditing(true)
     }
-    
+        
     @IBAction func create(_ sender: AnimationButton) {
         
         guard
             let name = nameTravelTextField.text,
             let dateStart = dateStartTextField.text,
             let endDate = endDateTravelTextField.text,
-            let discription = discriptionTextField.text
+            let discription = discriptionTextField.text,
+            name != "",
+            dateStart != "",
+            endDate != "",
+            discription != ""
         else{
             return
         }
@@ -74,6 +79,7 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
                                          dateStart: dateStart,
                                          endDate: endDate,
                                          discription: discription)
+        
         self.navigationController?.popViewController(animated: true)
     }
 }
