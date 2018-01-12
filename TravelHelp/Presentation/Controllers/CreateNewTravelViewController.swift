@@ -74,6 +74,6 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
                                          dateStart: dateStart,
                                          endDate: endDate,
                                          discription: discription)
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

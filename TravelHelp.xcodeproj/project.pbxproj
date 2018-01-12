@@ -14,7 +14,10 @@
 		4537E57120079AF500C2627B /* AutorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E57020079AF500C2627B /* AutorizationService.swift */; };
 		4537E5762007AAFA00C2627B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4537E5752007AAFA00C2627B /* GoogleService-Info.plist */; };
 		4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */; };
-		45521F782005E2A600775E10 /* TravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45521F772005E2A600775E10 /* TravelViewController.swift */; };
+		4537E57E2008DAA900C2627B /* TravelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4537E57D2008DAA900C2627B /* TravelTableViewCell.xib */; };
+		4537E5802008DADC00C2627B /* TravelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E57F2008DADC00C2627B /* TravelTableViewCell.swift */; };
+		4537E5822008F18400C2627B /* TravelSomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E5812008F18400C2627B /* TravelSomeViewController.swift */; };
+		45521F782005E2A600775E10 /* TravelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45521F772005E2A600775E10 /* TravelsViewController.swift */; };
 		45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45521F792005E97600775E10 /* RoutesViewController.swift */; };
 		45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45524B631FE9E6B400996F64 /* AnimationButton.swift */; };
 		455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B38C31FE73A900084DC35 /* MenuViewController.swift */; };
@@ -34,7 +37,10 @@
 		4537E57020079AF500C2627B /* AutorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationService.swift; sourceTree = "<group>"; };
 		4537E5752007AAFA00C2627B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTravelViewController.swift; sourceTree = "<group>"; };
-		45521F772005E2A600775E10 /* TravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelViewController.swift; sourceTree = "<group>"; };
+		4537E57D2008DAA900C2627B /* TravelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelTableViewCell.xib; sourceTree = "<group>"; };
+		4537E57F2008DADC00C2627B /* TravelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTableViewCell.swift; sourceTree = "<group>"; };
+		4537E5812008F18400C2627B /* TravelSomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSomeViewController.swift; sourceTree = "<group>"; };
+		45521F772005E2A600775E10 /* TravelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsViewController.swift; sourceTree = "<group>"; };
 		45521F792005E97600775E10 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
 		45524B631FE9E6B400996F64 /* AnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationButton.swift; sourceTree = "<group>"; };
 		455B38C31FE73A900084DC35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +101,7 @@
 		4537E5652007914B00C2627B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4537E57B2008DA5700C2627B /* TableViewCells */,
 				45524B631FE9E6B400996F64 /* AnimationButton.swift */,
 			);
 			path = Views;
@@ -141,12 +148,30 @@
 			path = AuthorizationService;
 			sourceTree = "<group>";
 		};
+		4537E57B2008DA5700C2627B /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4537E57C2008DA8200C2627B /* Travel */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		4537E57C2008DA8200C2627B /* Travel */ = {
+			isa = PBXGroup;
+			children = (
+				4537E57F2008DADC00C2627B /* TravelTableViewCell.swift */,
+				4537E57D2008DAA900C2627B /* TravelTableViewCell.xib */,
+			);
+			path = Travel;
+			sourceTree = "<group>";
+		};
 		457DB9401FFFC7D80024E908 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				45FBE02B2002AE2C00389ACC /* Registration */,
 				455B38C31FE73A900084DC35 /* MenuViewController.swift */,
-				45521F772005E2A600775E10 /* TravelViewController.swift */,
+				45521F772005E2A600775E10 /* TravelsViewController.swift */,
+				4537E5812008F18400C2627B /* TravelSomeViewController.swift */,
 				4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */,
 				45521F792005E97600775E10 /* RoutesViewController.swift */,
 			);
@@ -286,6 +311,7 @@
 				4537E5762007AAFA00C2627B /* GoogleService-Info.plist in Resources */,
 				45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */,
 				45F147851FE725C100666CB8 /* Main.storyboard in Resources */,
+				4537E57E2008DAA900C2627B /* TravelTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,15 +385,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4537E5822008F18400C2627B /* TravelSomeViewController.swift in Sources */,
 				45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */,
 				4537E57120079AF500C2627B /* AutorizationService.swift in Sources */,
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
 				45F147821FE725C100666CB8 /* LoginViewController.swift in Sources */,
 				4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */,
-				45521F782005E2A600775E10 /* TravelViewController.swift in Sources */,
+				45521F782005E2A600775E10 /* TravelsViewController.swift in Sources */,
 				45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */,
 				4537E56020075E8700C2627B /* TravelBase.swift in Sources */,
 				451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */,
+				4537E5802008DADC00C2627B /* TravelTableViewCell.swift in Sources */,
 				455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */,
 				457DB9441FFFCE0C0024E908 /* UserModel.swift in Sources */,
 				45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */,

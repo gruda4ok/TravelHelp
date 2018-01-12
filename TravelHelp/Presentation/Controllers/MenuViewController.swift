@@ -47,6 +47,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    
+    
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         accoutnKit.logOut()
         dismiss(animated: true, completion: nil)

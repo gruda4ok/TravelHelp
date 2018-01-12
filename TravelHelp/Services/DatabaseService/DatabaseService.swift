@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 
+typealias TravelsSnapshotClosureType = (_ travels: Array<TravelBase>) -> Void
+
 class DatabaseService {
     
     static let shared = DatabaseService()
@@ -21,15 +23,14 @@ class DatabaseService {
         nameRef.setValue(name)
     }
     
-    func snapshot(user: UserModel?) {
+    func snapshot(user: UserModel?, complition: @escaping TravelsSnapshotClosureType){
         guard let user = user else {return}
         let ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("travel")
         ref.observe(.value) {(snapshot) in
-            var travel = Array<TravelBase>()
-            for item in snapshot.children{
-                let traveld = TravelBase(snapshot: item as! DataSnapshot)
-                travel.append(traveld)
+            let travels = snapshot.children.flatMap{
+                return TravelBase(snapshot: $0 as! DataSnapshot)
             }
+            complition(travels)
         }
     }
     
@@ -44,10 +45,10 @@ class DatabaseService {
         else {
             return
         }
-    
+        
         let ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("travel")
         let travel = TravelBase(travelId: name, userId: user.uid, dateStart: dateStart, endDate: endDate, discription: discription)
-        let tickedRef = ref.child((travel.travelId?.lowercased())!)
+        let tickedRef = ref.child(travel.travelId.lowercased())
         tickedRef.setValue(travel.convertToDictionary())
     }
 }

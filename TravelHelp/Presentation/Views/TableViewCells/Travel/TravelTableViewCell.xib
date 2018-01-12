@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="101" id="49U-gu-HEo" customClass="TravelTableViewCell" customModule="TravelHelp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="49U-gu-HEo" id="gPy-4d-CgP">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRs-0E-cyf">
+                        <rect key="frame" x="16" y="0.0" width="343" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Discription" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6r-Gx-SXn">
+                        <rect key="frame" x="32" y="47" width="327" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="e1H-qk-uLP">
+                        <rect key="frame" x="32" y="25" width="197" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Datestart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CI-JJ-qNh">
+                                <rect key="frame" x="0.0" y="0.0" width="115" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rs-n6-Tug">
+                                <rect key="frame" x="129" y="0.0" width="68" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="1rs-n6-Tug" secondAttribute="bottom" id="1gG-hq-HTE"/>
+                            <constraint firstItem="1rs-n6-Tug" firstAttribute="top" secondItem="e1H-qk-uLP" secondAttribute="top" id="F0U-Oi-lfZ"/>
+                            <constraint firstAttribute="trailing" secondItem="1rs-n6-Tug" secondAttribute="trailing" id="j92-8F-zEz"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="cRs-0E-cyf" secondAttribute="trailing" constant="16" id="0hs-oP-eUV"/>
+                    <constraint firstItem="H6r-Gx-SXn" firstAttribute="top" secondItem="e1H-qk-uLP" secondAttribute="bottom" constant="1.5" id="4TH-B2-fqP"/>
+                    <constraint firstItem="cRs-0E-cyf" firstAttribute="top" secondItem="gPy-4d-CgP" secondAttribute="top" id="4cn-d5-ze7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="e1H-qk-uLP" secondAttribute="trailing" constant="130" id="507-JP-BiP"/>
+                    <constraint firstItem="e1H-qk-uLP" firstAttribute="top" secondItem="gPy-4d-CgP" secondAttribute="topMargin" constant="14" id="LUA-BC-B93"/>
+                    <constraint firstItem="H6r-Gx-SXn" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leading" constant="32" id="RDS-m2-nxn"/>
+                    <constraint firstItem="e1H-qk-uLP" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leadingMargin" constant="16" id="SoX-jD-T1E"/>
+                    <constraint firstItem="cRs-0E-cyf" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leading" constant="16" id="nQx-EN-4Tg"/>
+                    <constraint firstAttribute="trailing" secondItem="H6r-Gx-SXn" secondAttribute="trailing" constant="16" id="w9h-yu-e7I"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateStartLabel" destination="3CI-JJ-qNh" id="5k3-TO-46R"/>
+                <outlet property="discriptionLabel" destination="H6r-Gx-SXn" id="gbO-y3-V7l"/>
+                <outlet property="endDateLabel" destination="1rs-n6-Tug" id="hYA-HB-TtB"/>
+                <outlet property="titleLabel" destination="cRs-0E-cyf" id="0qR-oa-czI"/>
+            </connections>
+            <point key="canvasLocation" x="-81.5" y="-25.5"/>
+        </tableViewCell>
+    </objects>
+</document>
