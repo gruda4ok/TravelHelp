@@ -21,16 +21,32 @@ class LoginViewController: UIViewController {
     
     var accoutnKit: AKFAccountKit!
     
+    //MARK: - Live cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGesture()
+        setupNotification()
+        contorolUser()
+    }
+    
+    func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         view.addGestureRecognizer(tapGesture)
-        
+    }
+    
+    func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-       
+    }
+    
+    func setupInterface() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
+        logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
+    }
+    
+    func contorolUser() {
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
         }
@@ -41,11 +57,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
-        logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -63,12 +74,12 @@ class LoginViewController: UIViewController {
         emailTextField.text = ""
     }
     
-    func prepareLoginViewController(_ loginViewController: AKFViewController){
+    func prepareLoginViewController(_ loginViewController: AKFViewController) {
         loginViewController.delegate = self
         loginViewController.setAdvancedUIManager(nil)
     }
     
-    @objc func keyBoardDidShow(notification: Notification){
+    @objc func keyBoardDidShow(notification: Notification) {
         guard let userInfo = notification.userInfo else {return}
         let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height - 100), animated: true)
@@ -79,7 +90,7 @@ class LoginViewController: UIViewController {
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
-    // MARK: Login Button
+    // MARK: - Action
     
     @IBAction func loginButton(_ sender: UIButton) {
         guard let email = emailTextField.text,
@@ -95,6 +106,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registrationButton(_ sender: UIButton) {
+        
         performSegue(withIdentifier: "RegNewPerson", sender: nil)
         
     }
@@ -119,7 +131,7 @@ extension LoginViewController: UITextFieldDelegate{
     }
 }
 
-extension LoginViewController: AKFViewControllerDelegate{
+extension LoginViewController: AKFViewControllerDelegate {
     @IBAction func logInEmail(_ sender: AnimationButton) { // Login with email
         
         let inputState = UUID().uuidString

@@ -16,15 +16,25 @@ class MenuViewController: UIViewController  {
     private var accoutnKit: AKFAccountKit!
     private let menuArray: Array<String> = ["Travel", "routes"]
     
+    //MARK: - Live cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
+        setupInterface()
+        setupAccoutKit()
+    }
+    
+    func setupInterface() {
+         tableView.tableFooterView = UIView()
+    }
+    
+    func setupAccoutKit() {
         if accoutnKit == nil{
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
         }
-        // Do any additional setup after loading the view.
     }
     
+    //MARK: - Action
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         accoutnKit.logOut()
@@ -32,13 +42,13 @@ class MenuViewController: UIViewController  {
     }
 }
 
-extension MenuViewController: UITableViewDelegate{
+extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuArray.count
     }
 }
 
-extension MenuViewController: UITableViewDataSource{
+extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = menuArray[indexPath.row]

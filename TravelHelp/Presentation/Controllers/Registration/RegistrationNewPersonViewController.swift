@@ -11,28 +11,39 @@ import Firebase
 
 class RegistrationNewPersonViewController: UIViewController {
 
-    @IBOutlet weak var addPhotoButton: AnimationButton!
-    @IBOutlet weak var photoPersonImage: UIImageView!
+    @IBOutlet private weak var addPhotoButton: AnimationButton!
+    @IBOutlet private weak var photoPersonImage: UIImageView!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var registrationButton: AnimationButton!
-    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet private weak var phoneNumberTextField: UITextField!
+    
+    //MARK: - Live cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registrationButton.layer.cornerRadius = registrationButton.frame.height / 4
-        addPhotoButton.layer.cornerRadius = addPhotoButton.frame.height / 4
-        photoPersonImage.layer.cornerRadius = photoPersonImage.frame.height / 2
-        
+        setupGestures()
+        setupInterface()
+        setupNotification()
+    }
+    
+    private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         view.addGestureRecognizer(tapGesture)
-        
+    }
+    
+    private func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
+    
+    private func setupInterface() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    //MARK: - Actions
     
     @IBAction func registrationButton(_ sender: UIButton) {
         guard
@@ -44,7 +55,7 @@ class RegistrationNewPersonViewController: UIViewController {
             password != "",
             name != "",
             phone != ""
-            else {
+        else {
             //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }
@@ -52,22 +63,27 @@ class RegistrationNewPersonViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
     @IBAction func cancelButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func keyBoardDidShow(notification: Notification){
-       // guard let userInfo = notification.userInfo else {return}
-       // let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
+    @objc func keyBoardDidShow(notification: Notification) {
+        //guard let userInfo = notification.userInfo else {return}
+        //let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
     
-    @objc func keyBoardDidHide(){
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
+    @objc func keyBoardDidHide() {
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
 }
 
-extension RegistrationNewPersonViewController: UITextFieldDelegate{
+extension RegistrationNewPersonViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
@@ -76,21 +92,22 @@ extension RegistrationNewPersonViewController: UITextFieldDelegate{
         return true
     }
     
-    @objc func dissmisText(){
+    @objc func dissmisText() {
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
         nameTextField.endEditing(true)
         phoneNumberTextField.endEditing(true)
     }
 }
-extension RegistrationNewPersonViewController: UIImagePickerControllerDelegate{
+
+extension RegistrationNewPersonViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBAction func addPhotoButton(_ sender: AnimationButton) {
-        let image = UIImagePickerController()
-        image.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        image.allowsEditing = false
-        self.present(image, animated: true) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        picker.allowsEditing = true
+        self.present(picker, animated: true) {
         }
     }
     
@@ -101,5 +118,10 @@ extension RegistrationNewPersonViewController: UIImagePickerControllerDelegate{
         }else{
             print("Error")
         }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }

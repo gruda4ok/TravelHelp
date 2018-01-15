@@ -22,15 +22,26 @@ class CreateNewTravelViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGesture()
+        setupInterface()
+        setupNotification()
+    }
+    
+    func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func setupInterface() {
         addPhoto.layer.cornerRadius = addPhoto.frame.height / 6
         createButton.layer.cornerRadius = createButton.frame.height / 2
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
         nameTravelTextField.delegate = self
         dateStartTextField.delegate = self
         endDateTravelTextField.delegate = self
         discriptionTextField.delegate = self
-        view.addGestureRecognizer(tapGesture)
-        
+    }
+    
+    func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
@@ -71,15 +82,16 @@ class CreateNewTravelViewController: UIViewController{
     }
 }
 
-extension CreateNewTravelViewController: UIImagePickerControllerDelegate{
+extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBAction func addPhoto(_ sender: AnimationButton) {
-        let image = UIImagePickerController()
-        image.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        image.allowsEditing = false
-        self.present(image, animated: true) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        picker.allowsEditing = false
+        self.present(picker, animated: true) {
         }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -89,6 +101,11 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate{
         }else{
             print("Error")
         }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -98,7 +115,6 @@ extension  CreateNewTravelViewController: UITextFieldDelegate{
         dateStartTextField.endEditing(true)
         endDateTravelTextField.endEditing(true)
         discriptionTextField.endEditing(true)
-        
         return true
     }
     

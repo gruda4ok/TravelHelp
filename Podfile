@@ -8,10 +8,10 @@ target 'TravelHelp' do
   # Pods for TravelHelp
 
 
-    pod 'AccountKit'
+    	pod 'AccountKit'
 	pod 'Firebase/Core'
-
-    pod 'Firebase/Database'
-pod'Firebase/Auth'
+    	pod 'Firebase/Database'
+	pod'Firebase/Auth'
+	pod 'Firebase/Storage'
 
 end
