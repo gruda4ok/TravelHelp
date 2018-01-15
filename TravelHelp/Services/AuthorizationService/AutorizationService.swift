@@ -18,14 +18,14 @@ class AutorizationService {
         return UserModel(user: Auth.auth().currentUser)
     }
     
-    func registerUser(email: String, password: String, name: String) {
+    func registerUser(email: String, password: String, name: String, phoneNumber: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             guard error == nil , let user = user else {
                 print(error!.localizedDescription )
                 return
             }
-            DatabaseService.shared.saveUser(uid: user.uid, email: email, name: name)
+            DatabaseService.shared.saveUser(uid: user.uid, email: email, name: name, phoneNumber: phoneNumber)
         }
     }
     

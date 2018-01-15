@@ -15,12 +15,15 @@ class DatabaseService {
     
     static let shared = DatabaseService()
    
-    func saveUser(uid:String, email: String, name: String){
+    func saveUser(uid:String, email: String, name: String, phoneNumber: String){
         let ref = Database.database().reference(withPath: "users")
         let userRef = ref.child(uid)
         userRef.setValue(["email": email])
         let nameRef = ref.child(uid).child("Name")
         nameRef.setValue(name)
+        let phoneRef = ref.child(uid).child("Phone Number")
+        phoneRef.setValue(phoneNumber)
+        
     }
     
     func snapshot(user: UserModel?, complition: @escaping TravelsSnapshotClosureType){

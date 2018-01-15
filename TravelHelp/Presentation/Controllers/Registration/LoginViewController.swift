@@ -10,26 +10,19 @@ import UIKit
 import AccountKit
 import Firebase
 
-class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControllerDelegate {
+class LoginViewController: UIViewController {
 
-    
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
-    @IBOutlet weak var logInEmail: AnimationButton!
-    @IBOutlet weak var logInPhone: AnimationButton!
-    
-    @IBOutlet weak var RegistrationButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet private weak var logInEmail: AnimationButton!
+    @IBOutlet private weak var logInPhone: AnimationButton!
+    @IBOutlet private weak var RegistrationButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
     var accoutnKit: AKFAccountKit!
-    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ref = Database.database().reference(withPath: "users")
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -54,7 +47,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if accoutnKit.currentAccessToken != nil {
@@ -70,7 +62,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
         passwordTextField.text = ""
         emailTextField.text = ""
     }
-    
     
     func prepareLoginViewController(_ loginViewController: AKFViewController){
         loginViewController.delegate = self
@@ -88,36 +79,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.endEditing(true)
-        passwordTextField.endEditing(true)
-        return true
-    }
-    
-    @objc func dissmisText(){
-        emailTextField.endEditing(true)
-        passwordTextField.endEditing(true)
-    }
-    
     // MARK: Login Button
-    
-    @IBAction func logInEmail(_ sender: AnimationButton) { // Login with email
-        
-        let inputState = UUID().uuidString
-        let viewController = accoutnKit.viewControllerForEmailLogin(withEmail: nil, state: inputState) as AKFViewController
-        viewController.enableSendToFacebook = true
-        self.prepareLoginViewController(viewController)
-        self.present(viewController as! UIViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func logInPhone(_ sender: AnimationButton) {  // Login  with phone number
-        let inputState = UUID().uuidString
-        let viewController = accoutnKit.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController
-        viewController.enableSendToFacebook = true
-        self.prepareLoginViewController(viewController)
-        self.present(viewController as! UIViewController, animated: true, completion: nil)
-    }
     
     @IBAction func loginButton(_ sender: UIButton) {
         guard let email = emailTextField.text,
@@ -144,3 +106,34 @@ class LoginViewController: UIViewController,UITextFieldDelegate, AKFViewControll
     }
 }
 
+extension LoginViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+        return true
+    }
+    
+    @objc func dissmisText(){
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+    }
+}
+
+extension LoginViewController: AKFViewControllerDelegate{
+    @IBAction func logInEmail(_ sender: AnimationButton) { // Login with email
+        
+        let inputState = UUID().uuidString
+        let viewController = accoutnKit.viewControllerForEmailLogin(withEmail: nil, state: inputState) as AKFViewController
+        viewController.enableSendToFacebook = true
+        self.prepareLoginViewController(viewController)
+        self.present(viewController as! UIViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func logInPhone(_ sender: AnimationButton) {  // Login  with phone number
+        let inputState = UUID().uuidString
+        let viewController = accoutnKit.viewControllerForPhoneLogin(with: nil, state: inputState) as AKFViewController
+        viewController.enableSendToFacebook = true
+        self.prepareLoginViewController(viewController)
+        self.present(viewController as! UIViewController, animated: true, completion: nil)
+    }
+}

@@ -9,12 +9,12 @@
 import UIKit
 import AccountKit
 
-class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MenuViewController: UIViewController  {
     
-    @IBOutlet weak var logOut: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
-    var accoutnKit: AKFAccountKit!
-    let menuArray: Array<String> = ["Travel", "routes"]
+    @IBOutlet private weak var logOut: UIBarButtonItem!
+    @IBOutlet private weak var tableView: UITableView!
+    private var accoutnKit: AKFAccountKit!
+    private let menuArray: Array<String> = ["Travel", "routes"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,19 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
+        accoutnKit.logOut()
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MenuViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuArray.count
     }
-    
-    
+}
+
+extension MenuViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = menuArray[indexPath.row]
@@ -45,13 +53,4 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             performSegue(withIdentifier: "ShowRoutes", sender: nil)
         }
     }
-    
-    
-    
-    
-    @IBAction func logOut(_ sender: UIBarButtonItem) {
-        accoutnKit.logOut()
-        dismiss(animated: true, completion: nil)
-    }
-
 }

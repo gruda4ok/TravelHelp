@@ -8,19 +8,21 @@
 
 import UIKit
 
-class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
+class CreateNewTravelViewController: UIViewController{
 
-    var user: UserModel? = AutorizationService.shared.localUser
+    private var user: UserModel? = AutorizationService.shared.localUser
     
-   
-    @IBOutlet weak var createButton: AnimationButton!
-    @IBOutlet weak var nameTravelTextField: UITextField!
-    @IBOutlet weak var dateStartTextField: UITextField!
-    @IBOutlet weak var endDateTravelTextField: UITextField!
-    @IBOutlet weak var discriptionTextField: UITextField!
+    @IBOutlet private weak var travelPhotoImage: UIImageView!
+    @IBOutlet private weak var addPhoto: AnimationButton!
+    @IBOutlet private weak var createButton: AnimationButton!
+    @IBOutlet private weak var nameTravelTextField: UITextField!
+    @IBOutlet private weak var dateStartTextField: UITextField!
+    @IBOutlet private weak var endDateTravelTextField: UITextField!
+    @IBOutlet private weak var discriptionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addPhoto.layer.cornerRadius = addPhoto.frame.height / 6
         createButton.layer.cornerRadius = createButton.frame.height / 2
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
         nameTravelTextField.delegate = self
@@ -36,29 +38,14 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
     @objc func keyBoardDidShow(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
         let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height), animated: true)
+        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height - 100), animated: true)
     }
     
     @objc func keyBoardDidHide(){
         (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
-        discriptionTextField.endEditing(true)
-        
-        return true
-    }
-    
-    @objc func dissmisText(){
-        nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
-        discriptionTextField.endEditing(true)
-    }
-        
+   
     @IBAction func create(_ sender: AnimationButton) {
         
         guard
@@ -81,5 +68,44 @@ class CreateNewTravelViewController: UIViewController, UITextFieldDelegate {
                                          discription: discription)
         
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension CreateNewTravelViewController: UIImagePickerControllerDelegate{
+    
+    @IBAction func addPhoto(_ sender: AnimationButton) {
+        let image = UIImagePickerController()
+        image.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true) {
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            travelPhotoImage.image = image
+            addPhoto.isHidden = true
+        }else{
+            print("Error")
+        }
+    }
+}
+
+extension  CreateNewTravelViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTravelTextField.endEditing(true)
+        dateStartTextField.endEditing(true)
+        endDateTravelTextField.endEditing(true)
+        discriptionTextField.endEditing(true)
+        
+        return true
+    }
+    
+    @objc func dissmisText(){
+        nameTravelTextField.endEditing(true)
+        dateStartTextField.endEditing(true)
+        endDateTravelTextField.endEditing(true)
+        discriptionTextField.endEditing(true)
     }
 }
