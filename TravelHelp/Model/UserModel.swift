@@ -11,9 +11,9 @@ import Firebase
 
 class UserModel {
     
-    let uid:String
-    let email:String
-
+    let uid: String
+    let email: String
+   
     init?(user: User?) {
         guard
             let user = user,

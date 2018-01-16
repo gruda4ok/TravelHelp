@@ -8,6 +8,7 @@
 
 import UIKit
 import AccountKit
+import Firebase
 
 class MenuViewController: UIViewController  {
     
@@ -38,6 +39,7 @@ class MenuViewController: UIViewController  {
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         accoutnKit.logOut()
+        try? Auth.auth().signOut()
         dismiss(animated: true, completion: nil)
     }
 }

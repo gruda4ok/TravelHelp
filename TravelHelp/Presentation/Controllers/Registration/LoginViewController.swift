@@ -30,11 +30,7 @@ class LoginViewController: UIViewController {
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
         }
-        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            if user != nil{
-                self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
-            }
-        }
+      
     }
 
     
@@ -59,7 +55,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil{
+                self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
+            }
+        }
             if accoutnKit.currentAccessToken != nil {
                         DispatchQueue.main.async(execute: {
                             self.performSegue(withIdentifier: "ShowMenu", sender: self)

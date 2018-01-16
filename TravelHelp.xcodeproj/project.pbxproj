@@ -34,6 +34,7 @@
 		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
 		7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E5200E0EC8008D882F /* StorageService.swift */; };
 		7CE2E7E8200E23B1008D882F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E7200E23B1008D882F /* Image.swift */; };
+		7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CE2E7E5200E0EC8008D882F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7CE2E7E7200E23B1008D882F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */,
 				45521F792005E97600775E10 /* RoutesViewController.swift */,
 				45C60029200CA35E00A4C3DC /* CreateRoutesViewController.swift */,
+				7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
 				45F147821FE725C100666CB8 /* LoginViewController.swift in Sources */,
 				4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */,
+				7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */,
 				45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */,
 				4537E56020075E8700C2627B /* TravelBase.swift in Sources */,
 				451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */,
