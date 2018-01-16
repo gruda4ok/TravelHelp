@@ -26,8 +26,18 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupGesture()
         setupNotification()
-        contorolUser()
+        
+        if accoutnKit == nil {
+            self.accoutnKit = AKFAccountKit(responseType: .accessToken)
+        }
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil{
+                self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
+            }
+        }
     }
+
+    
     
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
@@ -46,21 +56,11 @@ class LoginViewController: UIViewController {
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
     }
     
-    func contorolUser() {
-        if accoutnKit == nil {
-            self.accoutnKit = AKFAccountKit(responseType: .accessToken)
-        }
-        Auth.auth().addStateDidChangeListener { [weak self](auth, user) in
-            if user != nil{
-                self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
-            }
-        }
-    }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if accoutnKit.currentAccessToken != nil {
+        
+            if accoutnKit.currentAccessToken != nil {
                         DispatchQueue.main.async(execute: {
                             self.performSegue(withIdentifier: "ShowMenu", sender: self)
                         })
@@ -96,7 +96,6 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
             email != "",password != "" else {
-            //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }
         
@@ -106,10 +105,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registrationButton(_ sender: UIButton) {
-        
         performSegue(withIdentifier: "RegNewPerson", sender: nil)
-        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowMwnu"{
             let dvc = segue.destination as! RegistrationNewPersonViewController

@@ -19,6 +19,8 @@ class RegistrationNewPersonViewController: UIViewController {
     @IBOutlet private weak var registrationButton: AnimationButton!
     @IBOutlet private weak var phoneNumberTextField: UITextField!
     
+    var imageModel: Image?
+    
     //MARK: - Live cycle
     
     override func viewDidLoad() {
@@ -59,18 +61,21 @@ class RegistrationNewPersonViewController: UIViewController {
             //displayWarnigLabel(withText: "Info is incorrecy")
             return
         }
-        AutorizationService.shared.registerUser(email: email, password: password, name: name, phoneNumber: phone)
-        dismiss(animated: true, completion: nil)
+        AutorizationService.shared.registerUser(email: email, password: password, name: name, phoneNumber: phone){ [weak self] in
+            if  let user = AutorizationService.shared.localUser,
+                let image = self?.imageModel{
+                
+               StorageService.shared.saveImage(image: image, name: user.uid)
+            }
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
-    
     
     @IBAction func cancelButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @objc func keyBoardDidShow(notification: Notification) {
-        //guard let userInfo = notification.userInfo else {return}
-        //let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
         if let view = view as? UIScrollView {
             view.setContentOffset(CGPoint(x:0,y:0), animated: true)
         }
@@ -112,9 +117,12 @@ extension RegistrationNewPersonViewController: UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+        if  let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let url = info[UIImagePickerControllerImageURL] as? NSURL,
+            let pathExtension = url.pathExtension {
             photoPersonImage.image = image
             addPhotoButton.isHidden = true
+            imageModel = Image(image: image, extention: pathExtension)
         }else{
             print("Error")
         }

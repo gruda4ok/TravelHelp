@@ -18,7 +18,7 @@ class AutorizationService {
         return UserModel(user: Auth.auth().currentUser)
     }
     
-    func registerUser(email: String, password: String, name: String, phoneNumber: String) {
+    func registerUser(email: String, password: String, name: String, phoneNumber: String, completion: @escaping EmptyClosureType) {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             guard error == nil , let user = user else {
@@ -26,6 +26,7 @@ class AutorizationService {
                 return
             }
             DatabaseService.shared.saveUser(uid: user.uid, email: email, name: name, phoneNumber: phoneNumber)
+            completion()
         }
     }
     

@@ -7,67 +7,40 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
+import GooglePlaces
 
-class CreateRoutesViewController: UIViewController, MKMapViewDelegate {
+class CreateRoutesViewController: UIViewController {
 
-    @IBOutlet weak var twoStep: UITextField!
-    @IBOutlet weak var oneStep: UITextField!
-    @IBOutlet weak var map: MKMapView!
+    var currentLocation = CLLocation()
+    var locationManager = CLLocationManager()
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 15.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        map.delegate = self
-        
-        let sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
-        let destinationLocation = CLLocationCoordinate2D(latitude: 18, longitude: -73.985564)
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        let sourceAnnotation = MKPointAnnotation()
-        sourceAnnotation.title = "Times Square"
-        
-        if let location = sourcePlacemark.location {
-            sourceAnnotation.coordinate = location.coordinate
-        }
-
-        let destinationAnnotation = MKPointAnnotation()
-        destinationAnnotation.title = "Empire State Building"
-        
-        if let location = destinationPlacemark.location {
-            destinationAnnotation.coordinate = location.coordinate
-        }
-        self.map.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .any
-    
-        let directions = MKDirections(request: directionRequest)
-        directions.calculate {
-            (response, error) -> Void in
-            
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                return
-            }
-            
-            let route = response.routes[0]
-            self.map.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
-            self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-        }
+        setupMap()
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.red
-        renderer.lineWidth = 4.0
+    func setupMap() {
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.settings.compassButton = true
+        mapView.isMyLocationEnabled = true
+        view = mapView
         
-        return renderer
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        marker.map = mapView
+        
+        if let myLocation = mapView.myLocation {
+            print("User location\(myLocation)")
+        }else{
+            print("Not found user location")
+        }
     }
 }

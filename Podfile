@@ -13,5 +13,8 @@ target 'TravelHelp' do
     	pod 'Firebase/Database'
 	pod'Firebase/Auth'
 	pod 'Firebase/Storage'
+	pod 'GooglePlaces'
+ 	pod 'GooglePlacePicker'
+  	pod 'GoogleMaps'
 
 end
