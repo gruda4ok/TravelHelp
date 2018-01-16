@@ -13,7 +13,6 @@
 		4537E56020075E8700C2627B /* TravelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E55F20075E8700C2627B /* TravelBase.swift */; };
 		4537E56E2007945400C2627B /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E56D2007945400C2627B /* DatabaseService.swift */; };
 		4537E57120079AF500C2627B /* AutorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E57020079AF500C2627B /* AutorizationService.swift */; };
-		4537E5762007AAFA00C2627B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4537E5752007AAFA00C2627B /* GoogleService-Info.plist */; };
 		4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */; };
 		4537E57E2008DAA900C2627B /* TravelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4537E57D2008DAA900C2627B /* TravelTableViewCell.xib */; };
 		4537E5802008DADC00C2627B /* TravelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4537E57F2008DADC00C2627B /* TravelTableViewCell.swift */; };
@@ -33,6 +32,7 @@
 		45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45F147861FE725C100666CB8 /* TravelHelp.xcdatamodeld */; };
 		45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F147891FE725C100666CB8 /* Assets.xcassets */; };
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
+		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,6 @@
 		4537E55F20075E8700C2627B /* TravelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBase.swift; sourceTree = "<group>"; };
 		4537E56D2007945400C2627B /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		4537E57020079AF500C2627B /* AutorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationService.swift; sourceTree = "<group>"; };
-		4537E5752007AAFA00C2627B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTravelViewController.swift; sourceTree = "<group>"; };
 		4537E57D2008DAA900C2627B /* TravelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelTableViewCell.xib; sourceTree = "<group>"; };
 		4537E57F2008DADC00C2627B /* TravelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelTableViewCell.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		4DA31F6EBE94B2C681308FC6 /* Pods_TravelHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TravelHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A26129691EB662A5DF3E71C /* Pods-TravelHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.debug.xcconfig"; sourceTree = "<group>"; };
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
+		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +232,7 @@
 		45F1477E1FE725C100666CB8 /* TravelHelp */ = {
 			isa = PBXGroup;
 			children = (
-				4537E5752007AAFA00C2627B /* GoogleService-Info.plist */,
+				7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */,
 				4537E56B200793EC00C2627B /* Services */,
 				4537E568200791C800C2627B /* Application */,
 				457DB9451FFFCE120024E908 /* Model */,
@@ -329,10 +329,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				45C60030200CECE500A4C3DC /* Travel.storyboard in Resources */,
+				7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */,
 				45C6002E200CEAFF00A4C3DC /* Authorization.storyboard in Resources */,
 				45C60032200CED4900A4C3DC /* Routes.storyboard in Resources */,
 				45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */,
-				4537E5762007AAFA00C2627B /* GoogleService-Info.plist in Resources */,
 				45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */,
 				45F147851FE725C100666CB8 /* Main.storyboard in Resources */,
 				4537E57E2008DAA900C2627B /* TravelTableViewCell.xib in Resources */,
