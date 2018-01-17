@@ -64,7 +64,6 @@ class RegistrationNewPersonViewController: UIViewController {
         AutorizationService.shared.registerUser(email: email, password: password, name: name, phoneNumber: phone){ [weak self] in
             if  let user = AutorizationService.shared.localUser,
                 let image = self?.imageModel{
-                
                StorageService.shared.saveImage(image: image, name: user.uid)
             }
             self?.dismiss(animated: true, completion: nil)

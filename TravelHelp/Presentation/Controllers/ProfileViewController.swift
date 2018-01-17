@@ -11,7 +11,17 @@ import Firebase
 
 class ProfileViewController: UIViewController {
    
+    @IBOutlet weak var nameLabel: UILabel!
+    var user: UserModel? = AutorizationService.shared.localUser
+    var travel: TravelBase?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if user != nil{
+            guard let user = user else { return }
+            let nameRef = Database.database().reference().child(user.uid).child("Name")
+            print(nameRef)
+            nameLabel.text = user.email
+        }
     }
 }

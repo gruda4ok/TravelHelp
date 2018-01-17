@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import GoogleMaps
 
-class CreateNewTravelViewController: UIViewController{
+class CreateNewTravelViewController: UIViewController {
 
     private var user: UserModel? = AutorizationService.shared.localUser
     
+    @IBOutlet weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
     @IBOutlet private weak var addPhoto: AnimationButton!
     @IBOutlet private weak var createButton: AnimationButton!
@@ -20,11 +22,15 @@ class CreateNewTravelViewController: UIViewController{
     @IBOutlet private weak var endDateTravelTextField: UITextField!
     @IBOutlet private weak var discriptionTextField: UITextField!
     
+    var imageModel: Image?
+    var travel: TravelBase?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGesture()
         setupInterface()
         setupNotification()
+        setupMap()
     }
     
     func setupGesture() {
@@ -47,18 +53,19 @@ class CreateNewTravelViewController: UIViewController{
     }
     
     @objc func keyBoardDidShow(notification: Notification){
-        guard let userInfo = notification.userInfo else {return}
-        let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height - 100), animated: true)
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
     
-    @objc func keyBoardDidHide(){
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
+    @objc func keyBoardDidHide() {
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
     
    
     @IBAction func create(_ sender: AnimationButton) {
-        
         guard
             let name = nameTravelTextField.text,
             let dateStart = dateStartTextField.text,
@@ -71,19 +78,45 @@ class CreateNewTravelViewController: UIViewController{
         else{
             return
         }
-       
         DatabaseService.shared.addTravel(name: name,
                                          user: user,
                                          dateStart: dateStart,
                                          endDate: endDate,
                                          discription: discription)
-        
         self.navigationController?.popViewController(animated: true)
+        if let image = self.imageModel,
+            let user = self.user,
+            let travel = self.travel
+        {
+            StorageService.shared.saveImageTravel(image: image, user: user, travel: travel)
+        }
+    }
+    
+    func setupMap() {
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        map.settings.myLocationButton = true
+        map.settings.compassButton = true
+        map.isMyLocationEnabled = true
+        map.frame = mapView.bounds
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.addSubview(map)
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        marker.map = map
+        
+        if let myLocation = map.myLocation {
+            print("User location\(myLocation)")
+        }else{
+            print("Not found user location")
+        }
     }
 }
 
 extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
     @IBAction func addPhoto(_ sender: AnimationButton) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -91,13 +124,15 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavi
         picker.allowsEditing = false
         self.present(picker, animated: true) {
         }
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+        if  let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let url = info[UIImagePickerControllerImageURL] as? NSURL,
+            let pathExtension = url.pathExtension {
             travelPhotoImage.image = image
             addPhoto.isHidden = true
+            imageModel = Image(image: image, extention: pathExtension)
         }else{
             print("Error")
         }

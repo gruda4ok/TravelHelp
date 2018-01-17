@@ -38,7 +38,6 @@ class DatabaseService {
     }
     
     func addTravel(name: String?, user: UserModel?, dateStart: String?, endDate: String?, discription: String?){
-        
         guard
             let user = user,
             let name = name,
@@ -48,10 +47,26 @@ class DatabaseService {
         else {
             return
         }
-        
         let ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("travel")
-        let travel = TravelBase(travelId: name, userId: user.uid, dateStart: dateStart, endDate: endDate, discription: discription)
-        let tickedRef = ref.child(travel.travelId.lowercased())
-        tickedRef.setValue(travel.convertToDictionary())
+        let travel = TravelBase(travelId: name,
+                              userId: user.uid,
+                              dateStart: dateStart,
+                              endDate: endDate,
+                              discription: discription)
+        let travelRef = ref.child(travel.travelId.lowercased())
+        travelRef.setValue(travel.convertToDictionary())
     }
+
+//    func saveImageURL(imageURL: String?, user: UserModel?, travel: TravelBase?) {
+//        guard
+//            let imageURL = imageURL,
+//            let user = user,
+//            let travel = travel
+//        else {
+//            return
+//        }
+//        let ref = Database.database().reference(withPath:"users").child(user.uid).child(travel.travelId)
+//        let imageRef = ref.child("imageURl")
+//        imageRef.setValue(imageURL)
+//    }
 }

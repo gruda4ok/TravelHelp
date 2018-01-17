@@ -18,7 +18,6 @@ class Image {
     private let type: ImageType?
     private let image: UIImage
     
-    
     init(image: UIImage, extention: String) {
         self.image = image
         self.type = ImageType(rawValue: extention.lowercased())

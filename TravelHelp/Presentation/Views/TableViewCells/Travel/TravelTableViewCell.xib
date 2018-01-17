@@ -19,6 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1yB-c9-HWs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRs-0E-cyf">
                         <rect key="frame" x="16" y="0.0" width="343" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -59,10 +62,14 @@
                     <constraint firstItem="H6r-Gx-SXn" firstAttribute="top" secondItem="e1H-qk-uLP" secondAttribute="bottom" constant="1.5" id="4TH-B2-fqP"/>
                     <constraint firstItem="cRs-0E-cyf" firstAttribute="top" secondItem="gPy-4d-CgP" secondAttribute="top" id="4cn-d5-ze7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="e1H-qk-uLP" secondAttribute="trailing" constant="130" id="507-JP-BiP"/>
+                    <constraint firstAttribute="bottom" secondItem="1yB-c9-HWs" secondAttribute="bottom" id="Hez-MZ-9MY"/>
                     <constraint firstItem="e1H-qk-uLP" firstAttribute="top" secondItem="gPy-4d-CgP" secondAttribute="topMargin" constant="14" id="LUA-BC-B93"/>
+                    <constraint firstItem="1yB-c9-HWs" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leading" id="QgJ-ah-NYw"/>
                     <constraint firstItem="H6r-Gx-SXn" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leading" constant="32" id="RDS-m2-nxn"/>
                     <constraint firstItem="e1H-qk-uLP" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leadingMargin" constant="16" id="SoX-jD-T1E"/>
+                    <constraint firstItem="1yB-c9-HWs" firstAttribute="top" secondItem="gPy-4d-CgP" secondAttribute="top" id="kFR-kv-lt2"/>
                     <constraint firstItem="cRs-0E-cyf" firstAttribute="leading" secondItem="gPy-4d-CgP" secondAttribute="leading" constant="16" id="nQx-EN-4Tg"/>
+                    <constraint firstAttribute="trailing" secondItem="1yB-c9-HWs" secondAttribute="trailing" id="rfF-SK-vIV"/>
                     <constraint firstAttribute="trailing" secondItem="H6r-Gx-SXn" secondAttribute="trailing" constant="16" id="w9h-yu-e7I"/>
                 </constraints>
             </tableViewCellContentView>
@@ -71,6 +78,7 @@
                 <outlet property="discriptionLabel" destination="H6r-Gx-SXn" id="gbO-y3-V7l"/>
                 <outlet property="endDateLabel" destination="1rs-n6-Tug" id="hYA-HB-TtB"/>
                 <outlet property="titleLabel" destination="cRs-0E-cyf" id="0qR-oa-czI"/>
+                <outlet property="travelImageView" destination="1yB-c9-HWs" id="fdr-u3-f3C"/>
             </connections>
             <point key="canvasLocation" x="-81.5" y="-25.5"/>
         </tableViewCell>

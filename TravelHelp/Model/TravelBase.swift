@@ -44,6 +44,6 @@ struct TravelBase {
                 "userId": userId,
                 "dateStart": dateStart,
                 "endDate": endDate,
-                "discription": discription ]
+                "discription": discription,]
     }
 }
