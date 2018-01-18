@@ -56,17 +56,4 @@ class DatabaseService {
         let travelRef = ref.child(travel.travelId.lowercased())
         travelRef.setValue(travel.convertToDictionary())
     }
-
-//    func saveImageURL(imageURL: String?, user: UserModel?, travel: TravelBase?) {
-//        guard
-//            let imageURL = imageURL,
-//            let user = user,
-//            let travel = travel
-//        else {
-//            return
-//        }
-//        let ref = Database.database().reference(withPath:"users").child(user.uid).child(travel.travelId)
-//        let imageRef = ref.child("imageURl")
-//        imageRef.setValue(imageURL)
-//    }
 }

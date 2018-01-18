@@ -8,12 +8,13 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
+import GooglePlacePicker
 
 class CreateNewTravelViewController: UIViewController {
 
-    private var user: UserModel? = AutorizationService.shared.localUser
-    
-    @IBOutlet weak var mapView: UIView!
+   
+    @IBOutlet private weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
     @IBOutlet private weak var addPhoto: AnimationButton!
     @IBOutlet private weak var createButton: AnimationButton!
@@ -22,8 +23,14 @@ class CreateNewTravelViewController: UIViewController {
     @IBOutlet private weak var endDateTravelTextField: UITextField!
     @IBOutlet private weak var discriptionTextField: UITextField!
     
-    var imageModel: Image?
-    var travel: TravelBase?
+    private var map: GMSMapView!
+    private var marker: GMSMarker!
+    private var placeArrayCoordinate: Array<CLLocationCoordinate2D> = []
+    private var placeNameArray: Array<String> = []
+    private var user: UserModel? = AutorizationService.shared.localUser
+    private var placesClient: GMSPlacesClient!
+    private var imageModel: Image?
+    private var travel: TravelBase?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,8 +100,9 @@ class CreateNewTravelViewController: UIViewController {
     }
     
     func setupMap() {
+       
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         map.settings.myLocationButton = true
         map.settings.compassButton = true
         map.isMyLocationEnabled = true
@@ -102,17 +110,36 @@ class CreateNewTravelViewController: UIViewController {
         map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.addSubview(map)
         
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = map
-        
-        if let myLocation = map.myLocation {
+    
+        if let myLocation = map?.myLocation {
             print("User location\(myLocation)")
         }else{
             print("Not found user location")
         }
+    }
+    
+    @IBAction func pickPlace(_ sender: UIButton) {
+        let config = GMSPlacePickerConfig(viewport: nil)
+        let placePicker = GMSPlacePickerViewController(config: config)
+        present(placePicker, animated: true, completion: nil)
+    }
+    
+    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+        viewController.dismiss(animated: true, completion: nil)
+        print("Place name \(place.name)")
+        print("Place address \(String(describing: place.formattedAddress))")
+        print("Place attributions \(String(describing: place.attributions))")
+    }
+    
+    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+        print("No place selected")
+    }
+    
+    @IBAction func addPlace(_ sender: UIButton) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
     }
 }
 
@@ -144,7 +171,7 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavi
     }
 }
 
-extension  CreateNewTravelViewController: UITextFieldDelegate{
+extension  CreateNewTravelViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTravelTextField.endEditing(true)
         dateStartTextField.endEditing(true)
@@ -158,5 +185,77 @@ extension  CreateNewTravelViewController: UITextFieldDelegate{
         dateStartTextField.endEditing(true)
         endDateTravelTextField.endEditing(true)
         discriptionTextField.endEditing(true)
+    }
+}
+
+extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place location \(place.coordinate.latitude),\(place.coordinate.longitude)")
+        print("Place address: \(String(describing: place.formattedAddress)))")
+        print("Place attributions: \(String(describing: place.attributions)))")
+        print("Place\(String(describing: place.phoneNumber))")
+        print("Place id: \(place.placeID)")
+        
+        let placeCoordinate = place.coordinate
+        placeArrayCoordinate.append(placeCoordinate)
+        guard let placeName = place.formattedAddress else { return }
+        placeNameArray.append(placeName)
+        print("Array coordinate\(placeArrayCoordinate)")
+        print("Array name place\(placeNameArray)")
+        
+        marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        marker.map = map
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    func placeAutocomplete() {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .establishment
+        placesClient.autocompleteQuery("Sydney Oper", bounds: nil, filter: filter, callback: {(results, error) -> Void in
+            if let error = error {
+                print("Autocomplete error \(error)")
+                return
+            }
+            if let results = results {
+                for result in results {
+                    print("Result \(result.attributedFullText) with placeID \(String(describing: result.placeID))")
+                }
+            }
+        })
+    }
+}
+
+extension CreateNewTravelViewController: UITableViewDelegate{
+    
+}
+
+extension CreateNewTravelViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return placeNameArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = placeNameArray[indexPath.row]
+        return cell
     }
 }
