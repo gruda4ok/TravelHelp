@@ -16,6 +16,6 @@ target 'TravelHelp' do
  	pod 'GooglePlacePicker'
   	pod 'GoogleMaps'
 	pod 'Kingfisher' 
-	pod 'PXGoogleDirections'
+	pod 'PKHUD'
 
 end

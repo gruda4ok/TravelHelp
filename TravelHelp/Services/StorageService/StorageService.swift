@@ -39,7 +39,7 @@ class StorageService {
     
      //MARK: - TravelImage
     
-    func saveImageTravel(image: Image, user: UserModel?, travel: TravelBase?) {
+    func saveImageTravel(image: Image, user: UserModel?, travel: TravelBase?, complition: @escaping EmptyClosureType) {
         guard
             let user = user,
             let travel = travel
@@ -47,10 +47,11 @@ class StorageService {
             return
         }
         if let data = image.data{
-            let storageRef = Storage.storage().reference().child("Travel").child(user.uid).child(travel.travelId)
+            let storageRef = Storage.storage().reference().child("ImageTravel").child(user.uid).child(travel.travelId)
             let metadata = StorageMetadata()
             metadata.contentType = image.contentType
             let uploadTask = storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                complition()
             }
             uploadTask.resume()
         }
@@ -63,7 +64,7 @@ class StorageService {
         else {
             return
         }
-        let storageRef = Storage.storage().reference().child("Travel").child(user.uid).child(travel.travelId)
+        let storageRef = Storage.storage().reference().child("ImageTravel").child(user.uid).child(travel.travelId)
         storageRef.downloadURL(completion: { (url, error) in
             completion(url)
         })

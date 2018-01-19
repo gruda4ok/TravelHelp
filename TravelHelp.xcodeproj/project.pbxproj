@@ -31,6 +31,7 @@
 		45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F147891FE725C100666CB8 /* Assets.xcassets */; };
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
 		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
+		7C8591FB20123AE000F52277 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8591FA20123AE000F52277 /* Direction.swift */; };
 		7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E5200E0EC8008D882F /* StorageService.swift */; };
 		7CE2E7E8200E23B1008D882F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E7200E23B1008D882F /* Image.swift */; };
 		7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */; };
@@ -65,6 +66,7 @@
 		5A26129691EB662A5DF3E71C /* Pods-TravelHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.debug.xcconfig"; sourceTree = "<group>"; };
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
 		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C8591FA20123AE000F52277 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		7CE2E7E5200E0EC8008D882F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7CE2E7E7200E23B1008D882F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				457DB9431FFFCE0C0024E908 /* UserModel.swift */,
 				4537E55F20075E8700C2627B /* TravelBase.swift */,
 				7CE2E7E7200E23B1008D882F /* Image.swift */,
+				7C8591FA20123AE000F52277 /* Direction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -370,6 +374,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -427,6 +432,7 @@
 				7CE2E7E8200E23B1008D882F /* Image.swift in Sources */,
 				7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */,
 				4537E5822008F18400C2627B /* TravelSomeViewController.swift in Sources */,
+				7C8591FB20123AE000F52277 /* Direction.swift in Sources */,
 				45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */,
 				4537E57120079AF500C2627B /* AutorizationService.swift in Sources */,
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,

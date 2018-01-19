@@ -37,7 +37,7 @@ class DatabaseService {
         }
     }
     
-    func addTravel(name: String?, user: UserModel?, dateStart: String?, endDate: String?, discription: String?){
+    func addTravel(name: String?, user: UserModel?, dateStart: String?, endDate: String?, discription: String?) -> TravelBase?{
         guard
             let user = user,
             let name = name,
@@ -45,7 +45,7 @@ class DatabaseService {
             let endDate = endDate,
             let discription = discription
         else {
-            return
+            return nil
         }
         let ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("travel")
         let travel = TravelBase(travelId: name,
@@ -55,5 +55,7 @@ class DatabaseService {
                               discription: discription)
         let travelRef = ref.child(travel.travelId.lowercased())
         travelRef.setValue(travel.convertToDictionary())
+        
+        return travel
     }
 }

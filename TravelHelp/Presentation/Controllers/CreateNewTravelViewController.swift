@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import GooglePlacePicker
+import PKHUD
 
 class CreateNewTravelViewController: UIViewController {
 
@@ -86,17 +87,20 @@ class CreateNewTravelViewController: UIViewController {
         else{
             return
         }
-        DatabaseService.shared.addTravel(name: name,
-                                         user: user,
-                                         dateStart: dateStart,
-                                         endDate: endDate,
-                                         discription: discription)
+        HUD.show(.progress)
+        self.travel = DatabaseService.shared.addTravel(name: name,
+                                                       user: user,
+                                                       dateStart: dateStart,
+                                                       endDate: endDate,
+                                                       discription: discription)
         if let image = self.imageModel,
             let user = AutorizationService.shared.localUser,
             let travel = self.travel {
-            StorageService.shared.saveImageTravel(image: image, user: user, travel: travel)
+            StorageService.shared.saveImageTravel(image: image, user: user, travel: travel){
+                HUD.hide()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        self.navigationController?.popViewController(animated: true)
     }
     
     func setupMap() {
@@ -195,7 +199,7 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
         print("Place\(String(describing: place.phoneNumber))")
         print("Place id: \(place.placeID)")
         
-        placeNameArray.append(place.name)
+        placeNameArray.append(place.placeID)
         print(placeNameArray)
         placeArrayCoordinate.append(place.coordinate)
         print(placeArrayCoordinate)
@@ -204,6 +208,23 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.map = map
         
+        if  let lastPlace = placeNameArray.last,
+            let preLastPlace = placeNameArray.dropLast().last{
+        
+            let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=place_id:\(lastPlace)&destination=place_id:\(preLastPlace)&key=AIzaSyBLTV2SSUBOdqE64iTztDYVAxlpYyj5rJY"
+           
+            guard let url = URL(string: urlString) else { return }
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data else { return }
+                guard error == nil else { return }
+                do{
+                    let direction = try JSONDecoder().decode(Derection.self, from: data)
+                    print(direction)
+                }catch let error{
+                    print(error)
+                }
+                }.resume()
+        }
         dismiss(animated: true, completion: nil)
     }
     
