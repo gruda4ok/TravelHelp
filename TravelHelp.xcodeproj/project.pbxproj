@@ -21,7 +21,6 @@
 		45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45524B631FE9E6B400996F64 /* AnimationButton.swift */; };
 		455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B38C31FE73A900084DC35 /* MenuViewController.swift */; };
 		457DB9441FFFCE0C0024E908 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB9431FFFCE0C0024E908 /* UserModel.swift */; };
-		45C6002A200CA35E00A4C3DC /* CreateRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C60029200CA35E00A4C3DC /* CreateRoutesViewController.swift */; };
 		45C6002E200CEAFF00A4C3DC /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C6002D200CEAFF00A4C3DC /* Authorization.storyboard */; };
 		45C60030200CECE500A4C3DC /* Travel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C6002F200CECE500A4C3DC /* Travel.storyboard */; };
 		45C60032200CED4900A4C3DC /* Routes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C60031200CED4900A4C3DC /* Routes.storyboard */; };
@@ -51,7 +50,6 @@
 		45524B631FE9E6B400996F64 /* AnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationButton.swift; sourceTree = "<group>"; };
 		455B38C31FE73A900084DC35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		457DB9431FFFCE0C0024E908 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		45C60029200CA35E00A4C3DC /* CreateRoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutesViewController.swift; sourceTree = "<group>"; };
 		45C6002D200CEAFF00A4C3DC /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		45C6002F200CECE500A4C3DC /* Travel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Travel.storyboard; sourceTree = "<group>"; };
 		45C60031200CED4900A4C3DC /* Routes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Routes.storyboard; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				4537E5812008F18400C2627B /* TravelSomeViewController.swift */,
 				4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */,
 				45521F792005E97600775E10 /* RoutesViewController.swift */,
-				45C60029200CA35E00A4C3DC /* CreateRoutesViewController.swift */,
 				7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */,
 			);
 			path = Controllers;
@@ -427,7 +424,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45C6002A200CA35E00A4C3DC /* CreateRoutesViewController.swift in Sources */,
 				7CE2E7E8200E23B1008D882F /* Image.swift in Sources */,
 				7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */,
 				4537E5822008F18400C2627B /* TravelSomeViewController.swift in Sources */,

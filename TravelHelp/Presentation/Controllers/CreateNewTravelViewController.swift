@@ -31,6 +31,7 @@ class CreateNewTravelViewController: UIViewController {
     private var placesClient: GMSPlacesClient!
     private var imageModel: Image?
     private var travel: TravelBase?
+    private var pathRoutes: GMSMutablePath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,17 +91,15 @@ class CreateNewTravelViewController: UIViewController {
                                          dateStart: dateStart,
                                          endDate: endDate,
                                          discription: discription)
-        self.navigationController?.popViewController(animated: true)
         if let image = self.imageModel,
-            let user = self.user,
-            let travel = self.travel
-        {
+            let user = AutorizationService.shared.localUser,
+            let travel = self.travel {
             StorageService.shared.saveImageTravel(image: image, user: user, travel: travel)
         }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupMap() {
-       
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         map.settings.myLocationButton = true
@@ -110,7 +109,6 @@ class CreateNewTravelViewController: UIViewController {
         map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.addSubview(map)
         
-    
         if let myLocation = map?.myLocation {
             print("User location\(myLocation)")
         }else{
@@ -197,12 +195,10 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
         print("Place\(String(describing: place.phoneNumber))")
         print("Place id: \(place.placeID)")
         
-        let placeCoordinate = place.coordinate
-        placeArrayCoordinate.append(placeCoordinate)
-        guard let placeName = place.formattedAddress else { return }
-        placeNameArray.append(placeName)
-        print("Array coordinate\(placeArrayCoordinate)")
-        print("Array name place\(placeNameArray)")
+        placeNameArray.append(place.name)
+        print(placeNameArray)
+        placeArrayCoordinate.append(place.coordinate)
+        print(placeArrayCoordinate)
         
         marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
@@ -241,21 +237,5 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                 }
             }
         })
-    }
-}
-
-extension CreateNewTravelViewController: UITableViewDelegate{
-    
-}
-
-extension CreateNewTravelViewController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return placeNameArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = placeNameArray[indexPath.row]
-        return cell
     }
 }

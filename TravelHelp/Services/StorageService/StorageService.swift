@@ -14,23 +14,30 @@ typealias DownloadImageURLClosure = (_ url: URL?) -> Void
 class StorageService {
     static let shared = StorageService()
     var user: UserModel? = AutorizationService.shared.localUser
-    func saveImage(image: Image, name: String) {
+    
+    //MARK: - AvatarImage
+    
+    func saveAvatarImage(image: Image, user: UserModel?) {
+        guard let user = user else { return }
         if let data = image.data{
-            let storageRef = Storage.storage().reference().child("Avatar").child(name)
+            let storageRef = Storage.storage().reference().child("Avatar").child(user.uid)
             let metadata = StorageMetadata()
             metadata.contentType = image.contentType
             let uploadTask = storageRef.putData(data, metadata: metadata) { (metadata, error) in
             }
             uploadTask.resume()
-            storageRef.downloadURL(completion: { (url, error) in
-                if error != nil {
-                    print("URl don't create")
-                }else{
-                    print(url ?? String.self)
-                }
-            })
         }
     }
+    
+    func avatarImage(user: UserModel?, completion: @escaping DownloadImageURLClosure){
+        guard let user = user else { return }
+        let storageRef = Storage.storage().reference().child("Avatar").child(user.uid)
+        storageRef.downloadURL(completion: { (url, error) in
+            completion(url)
+        })
+    }
+    
+     //MARK: - TravelImage
     
     func saveImageTravel(image: Image, user: UserModel?, travel: TravelBase?) {
         guard
@@ -40,15 +47,15 @@ class StorageService {
             return
         }
         if let data = image.data{
-            let storageRef = Storage.storage().reference().child("ImageTravel").child(user.uid).child(travel.travelId)
+            let storageRef = Storage.storage().reference().child("Travel").child(user.uid).child(travel.travelId)
             let metadata = StorageMetadata()
             metadata.contentType = image.contentType
             let uploadTask = storageRef.putData(data, metadata: metadata) { (metadata, error) in
             }
             uploadTask.resume()
-           
         }
     }
+    
     func travelImage(user: UserModel?, travel: TravelBase?, completion: @escaping DownloadImageURLClosure){
         guard
             let user = user,
@@ -56,7 +63,7 @@ class StorageService {
         else {
             return
         }
-        let storageRef = Storage.storage().reference().child("ImageTravel").child(user.uid).child(travel.travelId)
+        let storageRef = Storage.storage().reference().child("Travel").child(user.uid).child(travel.travelId)
         storageRef.downloadURL(completion: { (url, error) in
             completion(url)
         })

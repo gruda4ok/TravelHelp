@@ -11,6 +11,7 @@ import Firebase
 
 class ProfileViewController: UIViewController {
    
+    @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     var user: UserModel? = AutorizationService.shared.localUser
     var travel: TravelBase?
@@ -23,5 +24,9 @@ class ProfileViewController: UIViewController {
             print(nameRef)
             nameLabel.text = user.email
         }
+        StorageService.shared.avatarImage(user: AutorizationService.shared.localUser) { [weak self] url  in
+            self?.avatarImage.kf.setImage(with: url)
+        }
+        avatarImage.layer.cornerRadius = avatarImage.bounds.height / 2
     }
 }

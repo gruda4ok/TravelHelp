@@ -101,11 +101,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1l-kh-UAZ">
                                 <rect key="frame" x="87" y="87" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="100"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2i-ra-Z6Z">
                                 <rect key="frame" x="40" y="309" width="294" height="48"/>
@@ -119,6 +114,7 @@
                         <viewLayoutGuide key="safeArea" id="rHx-Dh-AFe"/>
                     </view>
                     <connections>
+                        <outlet property="avatarImage" destination="B1l-kh-UAZ" id="rLh-mN-ZVW"/>
                         <outlet property="nameLabel" destination="B2i-ra-Z6Z" id="oZo-WU-yvL"/>
                     </connections>
                 </viewController>

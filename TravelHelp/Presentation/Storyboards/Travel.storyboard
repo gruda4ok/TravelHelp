@@ -257,50 +257,13 @@
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSm-0x-AFP">
-                                                <rect key="frame" x="153" y="485" width="66" height="30"/>
+                                                <rect key="frame" x="20" y="485" width="66" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="pickPlace"/>
                                                 <connections>
                                                     <action selector="pickPlace:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="MQL-OO-4ex"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVG-28-m6T">
-                                                <rect key="frame" x="262" y="485" width="65" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="AddPlace"/>
-                                                <connections>
-                                                    <action selector="addPlace:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="97Y-dv-a5J"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-Tv-tzU">
-                                                <rect key="frame" x="21" y="485" width="98" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Create Routes"/>
-                                                <connections>
-                                                    <segue destination="pRH-Iq-iIr" kind="show" id="Ujc-Bi-Dls">
-                                                        <nil key="action"/>
-                                                    </segue>
-                                                </connections>
-                                            </button>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nK8-BV-fH4">
-                                                <rect key="frame" x="8" y="816" width="359" height="271"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Jhh-q2-yg0">
-                                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jhh-q2-yg0" id="03Z-FY-ABe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="43.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </tableViewCellContentView>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Akj-qN-Q0x" id="Pgc-P2-jk2"/>
-                                                    <outlet property="delegate" destination="Akj-qN-Q0x" id="uwo-og-Kb0"/>
-                                                </connections>
-                                            </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wE2-ih-Xop" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
                                                 <rect key="frame" x="81" y="1385" width="212" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -311,6 +274,14 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="create:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="3Df-gN-hQn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVG-28-m6T">
+                                                <rect key="frame" x="125" y="485" width="65" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="AddPlace"/>
+                                                <connections>
+                                                    <action selector="addPlace:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="97Y-dv-a5J"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -353,44 +324,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4g4-Qc-VRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1855" y="1974"/>
-        </scene>
-        <!--Create Routes View Controller-->
-        <scene sceneID="3sn-XD-Bhc">
-            <objects>
-                <viewController id="pRH-Iq-iIr" customClass="CreateRoutesViewController" customModule="TravelHelp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WV6-Ul-poH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-zb-GdI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNN-MI-hsV">
-                                <rect key="frame" x="147" y="318" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="pickerPlace"/>
-                                <connections>
-                                    <action selector="pickerPlace:" destination="pRH-Iq-iIr" eventType="touchUpInside" id="Jwp-Wx-n4I"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="h8Y-zb-GdI" firstAttribute="trailing" secondItem="Khi-7h-SFU" secondAttribute="trailing" id="6Q9-ky-qUg"/>
-                            <constraint firstItem="h8Y-zb-GdI" firstAttribute="top" secondItem="WV6-Ul-poH" secondAttribute="top" id="AwU-KQ-PBN"/>
-                            <constraint firstItem="h8Y-zb-GdI" firstAttribute="leading" secondItem="Khi-7h-SFU" secondAttribute="leading" id="L9z-DK-tcv"/>
-                            <constraint firstItem="h8Y-zb-GdI" firstAttribute="bottom" secondItem="Khi-7h-SFU" secondAttribute="bottom" id="fUt-Xd-gwd"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Khi-7h-SFU"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="h8Y-zb-GdI" id="Dlw-9q-fWd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eUq-cv-rjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2670" y="1599"/>
         </scene>
     </scenes>
 </document>
