@@ -192,40 +192,27 @@ extension  CreateNewTravelViewController: UITextFieldDelegate {
 
 extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place location \(place.coordinate.latitude),\(place.coordinate.longitude)")
-        print("Place address: \(String(describing: place.formattedAddress)))")
-        print("Place attributions: \(String(describing: place.attributions)))")
-        print("Place\(String(describing: place.phoneNumber))")
-        print("Place id: \(place.placeID)")
-        
         placeNameArray.append(place.placeID)
-        print(placeNameArray)
         placeArrayCoordinate.append(place.coordinate)
-        print(placeArrayCoordinate)
         
         marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.map = map
-        
         if  let lastPlace = placeNameArray.last,
             let preLastPlace = placeNameArray.dropLast().last{
-        
             let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=place_id:\(lastPlace)&destination=place_id:\(preLastPlace)&key=AIzaSyBLTV2SSUBOdqE64iTztDYVAxlpYyj5rJY"
-           
             guard let url = URL(string: urlString) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data else { return }
                 guard error == nil else { return }
                 do{
                     let direction = try JSONDecoder().decode(Derection.self, from: data)
-                    print(direction)
                 }catch let error{
                     print(error)
                 }
-                }.resume()
-        }
+            }.resume()
         dismiss(animated: true, completion: nil)
+        }
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

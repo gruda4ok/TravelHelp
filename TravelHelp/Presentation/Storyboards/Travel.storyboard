@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-pj-XyQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellTravel" id="iyr-dn-SHH">
@@ -42,11 +42,8 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-gb-KEl" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
-                                <rect key="frame" x="36" y="606" width="302" height="50"/>
+                                <rect key="frame" x="36" y="603" width="302" height="50"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9Aq-x9-agc"/>
-                                </constraints>
                                 <state key="normal" title="Create new travel ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -64,14 +61,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="xhR-gb-KEl" secondAttribute="bottom" constant="11" id="B6F-8T-KgL"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="top" secondItem="ekc-pj-XyQ" secondAttribute="bottom" constant="8" id="BEV-23-9qt"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="leading" secondItem="N1j-LL-vso" secondAttribute="leading" constant="36" id="DUA-p5-6Uw"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="top" secondItem="ekc-pj-XyQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Ei3-AM-5fk"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="trailing" secondItem="N1j-LL-vso" secondAttribute="trailing" id="Lof-eP-V3q"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="top" secondItem="N1j-LL-vso" secondAttribute="top" constant="44" id="Maa-SG-Bb0"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="leading" secondItem="N1j-LL-vso" secondAttribute="leading" id="aHe-aV-fEt"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="centerX" secondItem="ekc-pj-XyQ" secondAttribute="centerX" id="sEk-cc-Ev9"/>
+                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="xhR-gb-KEl" secondAttribute="bottom" constant="14" id="8hM-Bu-hZR"/>
+                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="top" secondItem="QzO-uy-GCA" secondAttribute="top" id="Aqn-7e-Blk"/>
+                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="leading" secondItem="QzO-uy-GCA" secondAttribute="leading" id="W9f-eM-cdX"/>
+                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="centerX" secondItem="xhR-gb-KEl" secondAttribute="centerX" id="Wfj-XQ-xlt"/>
+                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="trailing" secondItem="N1j-LL-vso" secondAttribute="trailing" id="Ygw-z9-yGZ"/>
+                            <constraint firstItem="xhR-gb-KEl" firstAttribute="top" secondItem="N1j-LL-vso" secondAttribute="top" constant="583" id="aVD-fR-bEY"/>
+                            <constraint firstItem="N1j-LL-vso" firstAttribute="trailing" secondItem="xhR-gb-KEl" secondAttribute="trailing" constant="37" id="aZV-mV-wPw"/>
+                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="ekc-pj-XyQ" secondAttribute="bottom" constant="74" id="nYi-Rv-QUg"/>
+                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="xhR-gb-KEl" secondAttribute="bottom" constant="14" id="nhe-5A-0hr"/>
+                            <constraint firstItem="xhR-gb-KEl" firstAttribute="leading" secondItem="N1j-LL-vso" secondAttribute="leading" constant="36" id="pSr-gy-fnu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N1j-LL-vso"/>
                     </view>
@@ -82,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvO-3m-uvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="842"/>
+            <point key="canvasLocation" x="1853.5999999999999" y="841.52923538230891"/>
         </scene>
         <!--Travel Some View Controller-->
         <scene sceneID="gVv-5j-D24">
