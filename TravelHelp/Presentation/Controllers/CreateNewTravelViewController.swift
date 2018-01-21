@@ -207,6 +207,7 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                 guard error == nil else { return }
                 do{
                     let direction = try JSONDecoder().decode(Derection.self, from: data)
+                    print(direction)
                 }catch let error{
                     print(error)
                 }

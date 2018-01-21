@@ -18,8 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-pj-XyQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-pj-XyQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellTravel" id="iyr-dn-SHH">
@@ -41,8 +42,9 @@
                                     <outlet property="delegate" destination="LSB-u0-qwq" id="oMv-9M-Ukl"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-gb-KEl" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-gb-KEl" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
                                 <rect key="frame" x="36" y="603" width="302" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <state key="normal" title="Create new travel ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,18 +62,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="xhR-gb-KEl" secondAttribute="bottom" constant="14" id="8hM-Bu-hZR"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="top" secondItem="QzO-uy-GCA" secondAttribute="top" id="Aqn-7e-Blk"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="leading" secondItem="QzO-uy-GCA" secondAttribute="leading" id="W9f-eM-cdX"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="centerX" secondItem="xhR-gb-KEl" secondAttribute="centerX" id="Wfj-XQ-xlt"/>
-                            <constraint firstItem="ekc-pj-XyQ" firstAttribute="trailing" secondItem="N1j-LL-vso" secondAttribute="trailing" id="Ygw-z9-yGZ"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="top" secondItem="N1j-LL-vso" secondAttribute="top" constant="583" id="aVD-fR-bEY"/>
-                            <constraint firstItem="N1j-LL-vso" firstAttribute="trailing" secondItem="xhR-gb-KEl" secondAttribute="trailing" constant="37" id="aZV-mV-wPw"/>
-                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="ekc-pj-XyQ" secondAttribute="bottom" constant="74" id="nYi-Rv-QUg"/>
-                            <constraint firstItem="N1j-LL-vso" firstAttribute="bottom" secondItem="xhR-gb-KEl" secondAttribute="bottom" constant="14" id="nhe-5A-0hr"/>
-                            <constraint firstItem="xhR-gb-KEl" firstAttribute="leading" secondItem="N1j-LL-vso" secondAttribute="leading" constant="36" id="pSr-gy-fnu"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="N1j-LL-vso"/>
                     </view>
                     <connections>
