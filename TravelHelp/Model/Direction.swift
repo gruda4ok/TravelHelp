@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Derection: Decodable {
+struct Direction: Decodable {
     let routes: Array<Route>
 }
 

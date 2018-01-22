@@ -13,11 +13,11 @@ struct RouteBase {
     let routeID: String
     let userID: String
     
-    init(routeID: String, userID: String)  {
+    init(routeID: String, userID: String) {
         self.routeID = routeID
         self.userID = userID
     }
-    init?(snapshot: DataSnapshot){
+    init?(snapshot: DataSnapshot) {
         guard
             let snapshotValue = snapshot.value as? [String: String],
             let routeID = snapshotValue["routeID"]

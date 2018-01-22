@@ -7,9 +7,9 @@ target 'TravelHelp' do
 
   # Pods for TravelHelp
 
-    pod 'AccountKit'
+    	pod 'AccountKit'
 	pod 'Firebase/Core'
-    pod 'Firebase/Database'
+    	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'
 	pod 'GooglePlaces'
@@ -17,4 +17,5 @@ target 'TravelHelp' do
   	pod 'GoogleMaps'
 	pod 'Kingfisher' 
 	pod 'PKHUD'
+    
 end

@@ -25,8 +25,7 @@ class CreateNewTravelViewController: UIViewController {
     
     private var map: GMSMapView!
     private var marker: GMSMarker!
-    private var placeArrayCoordinate: Array<CLLocationCoordinate2D> = []
-    private var placeNameArray: Array<String> = []
+    private var places: Array<GMSPlace> = []
     private var user: UserModel? = AutorizationService.shared.localUser
     private var placesClient: GMSPlacesClient!
     private var imageModel: Image?
@@ -190,22 +189,16 @@ extension  CreateNewTravelViewController: UITextFieldDelegate {
 
 extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        placeNameArray.append(place.placeID)
-        placeArrayCoordinate.append(place.coordinate)
+        places.append(place)
         marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.map = map
-        if  let lastPlace = placeNameArray.last,
-            let preLastPlace = placeNameArray.dropLast().last{
-            let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=place_id:\(lastPlace)&destination=place_id:\(preLastPlace)&key=AIzaSyBLTV2SSUBOdqE64iTztDYVAxlpYyj5rJY"
-            guard let url = URL(string: urlString) else { return }
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else { return }
-                guard error == nil else { return }
-                do{
-                    let direction = try JSONDecoder().decode(Derection.self, from: data)
-                    let routes = direction.routes
-                    for route in routes{
+        if  let lastPlace = places.last,
+            let preLastPlace = places.dropLast().last{
+            DirectionService.shared.getDirection(firstPlace: lastPlace, secondPlace: preLastPlace, completion: { (direction) in
+                let routes = direction?.routes
+                DispatchQueue.main.async {
+                    for route in routes!{
                         let routeOverviewPolyline = route.overview_polyline
                         let points = routeOverviewPolyline.points
                         let path = GMSPath(fromEncodedPath: points)
@@ -214,11 +207,9 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                         polyline.strokeColor = .red
                         polyline.map = self.map
                     }
-                    print(direction)
-                }catch let error{
-                    print(error)
                 }
-            }.resume()
+            })
+            
         dismiss(animated: true, completion: nil)
         }
     }

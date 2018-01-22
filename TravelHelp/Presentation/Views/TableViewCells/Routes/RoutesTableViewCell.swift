@@ -15,7 +15,7 @@ class RoutesTableViewCell: UITableViewCell {
     
     func configurate(route: RouteBase){
         routeNameLabel.text = route.routeID
-        StorageService.shared.routeImage { [weak self] url in
+        StorageService.shared.routeImage(route: route) { [weak self] url in
             self?.routeImage.kf.setImage(with: url)
         }
     }

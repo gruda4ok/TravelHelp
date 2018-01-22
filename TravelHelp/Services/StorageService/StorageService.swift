@@ -14,6 +14,7 @@ typealias DownloadImageURLClosure = (_ url: URL?) -> Void
 class StorageService {
     static let shared = StorageService()
     var user: UserModel? = AutorizationService.shared.localUser
+
     
     //MARK: - AvatarImage
     
@@ -39,9 +40,14 @@ class StorageService {
     
     //MARK: - RoutesImage
     
-    func saveRouteImage(image: Image) {
+    func saveRouteImage(image: Image, route: RouteBase?) {
+        guard
+            let route = route
+        else {
+            return
+        }
         if let data = image.data{
-            let storageRef = Storage.storage().reference().child("Routes")
+            let storageRef = Storage.storage().reference().child("Routes").child(route.routeID)
             let metadata = StorageMetadata()
             metadata.contentType = image.contentType
             let uploadTask = storageRef.putData(data, metadata: metadata) { (metadata, error) in
@@ -50,8 +56,9 @@ class StorageService {
         }
     }
     
-    func routeImage( completion: @escaping DownloadImageURLClosure){
-        let storageRef = Storage.storage().reference().child("Routes")
+    func routeImage(route: RouteBase?, completion: @escaping DownloadImageURLClosure){
+        guard let route = route else {return}
+        let storageRef = Storage.storage().reference().child("Routes").child(route.routeID)
         storageRef.downloadURL(completion: { (url, error) in
             completion(url)
         })
