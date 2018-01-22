@@ -78,8 +78,14 @@ class CreateNewRouteViewController: UIViewController {
 
     @IBAction func createButton(_ sender: UIButton) {
         guard let name = nameTextField.text, name != "" else {return}
+        HUD.show(.progress)
         self.route = DatabaseService.shared.addRoute(name: name, user: user)
-        self.navigationController?.popViewController(animated: true)
+        if let imageRoute = self.imageModel {
+            StorageService.shared.saveRouteImage(image: imageRoute) {
+                HUD.hide()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     @IBAction func addPlace(_ sender: UIButton) {
@@ -150,9 +156,9 @@ extension CreateNewRouteViewController: GMSAutocompleteViewControllerDelegate {
                         let points = routeOverviewPolyline.points
                         let path = GMSPath(fromEncodedPath: points)
                         let polyline = GMSPolyline(path: path)
-                        polyline.strokeWidth = 4
-                        polyline.strokeColor = .red
-                        polyline.map = self.map
+                            polyline.strokeWidth = 4
+                            polyline.strokeColor = .red
+                            polyline.map = self.map
                     }
                     print(direction)
                 }catch let error{

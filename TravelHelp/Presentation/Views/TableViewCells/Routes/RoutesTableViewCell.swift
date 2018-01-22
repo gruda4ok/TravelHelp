@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RoutesTableViewCell: UITableViewCell {
     @IBOutlet private weak var routeImage: UIImageView!
@@ -14,6 +15,9 @@ class RoutesTableViewCell: UITableViewCell {
     
     func configurate(route: RouteBase){
         routeNameLabel.text = route.routeID
+        StorageService.shared.routeImage { [weak self] url in
+            self?.routeImage.kf.setImage(with: url)
+        }
     }
     
      override func prepareForReuse() {

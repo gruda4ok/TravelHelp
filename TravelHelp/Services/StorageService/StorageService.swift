@@ -37,7 +37,27 @@ class StorageService {
         })
     }
     
-     //MARK: - TravelImage
+    //MARK: - RoutesImage
+    
+    func saveRouteImage(image: Image) {
+        if let data = image.data{
+            let storageRef = Storage.storage().reference().child("Routes")
+            let metadata = StorageMetadata()
+            metadata.contentType = image.contentType
+            let uploadTask = storageRef.putData(data, metadata: metadata) { (metadata, error) in
+            }
+            uploadTask.resume()
+        }
+    }
+    
+    func routeImage( completion: @escaping DownloadImageURLClosure){
+        let storageRef = Storage.storage().reference().child("Routes")
+        storageRef.downloadURL(completion: { (url, error) in
+            completion(url)
+        })
+    }
+
+    //MARK: - TravelImage
     
     func saveImageTravel(image: Image, user: UserModel?, travel: TravelBase?, complition: @escaping EmptyClosureType) {
         guard
