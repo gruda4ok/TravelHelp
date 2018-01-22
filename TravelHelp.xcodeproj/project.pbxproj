@@ -31,6 +31,10 @@
 		45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F147891FE725C100666CB8 /* Assets.xcassets */; };
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
 		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
+		7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */; };
+		7C4D07E22015C1730043C1C6 /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */; };
+		7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E32015C4810043C1C6 /* RouteBase.swift */; };
+		7C4D07E92015D4270043C1C6 /* CreateNewRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */; };
 		7C8591FB20123AE000F52277 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8591FA20123AE000F52277 /* Direction.swift */; };
 		7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E5200E0EC8008D882F /* StorageService.swift */; };
 		7CE2E7E8200E23B1008D882F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E7200E23B1008D882F /* Image.swift */; };
@@ -66,6 +70,10 @@
 		5A26129691EB662A5DF3E71C /* Pods-TravelHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.debug.xcconfig"; sourceTree = "<group>"; };
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
 		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
+		7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
+		7C4D07E32015C4810043C1C6 /* RouteBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBase.swift; sourceTree = "<group>"; };
+		7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewRouteViewController.swift; sourceTree = "<group>"; };
 		7C8591FA20123AE000F52277 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		7CE2E7E5200E0EC8008D882F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7CE2E7E7200E23B1008D882F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 		4537E57B2008DA5700C2627B /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				7C4D07DE2015C0D70043C1C6 /* Routes */,
 				4537E57C2008DA8200C2627B /* Travel */,
 			);
 			path = TableViewCells;
@@ -184,12 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				45FBE02B2002AE2C00389ACC /* Registration */,
-				455B38C31FE73A900084DC35 /* MenuViewController.swift */,
-				4501F0082008FF3F009E4582 /* TravelViewController.swift */,
-				4537E5812008F18400C2627B /* TravelSomeViewController.swift */,
-				4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */,
-				45521F792005E97600775E10 /* RoutesViewController.swift */,
-				7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */,
+				7C4D07E62015D1EF0043C1C6 /* Menu */,
+				7C4D07E52015CE960043C1C6 /* Travel */,
+				7C4D07E72015D1FA0043C1C6 /* Routes */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,6 +217,7 @@
 			children = (
 				457DB9431FFFCE0C0024E908 /* UserModel.swift */,
 				4537E55F20075E8700C2627B /* TravelBase.swift */,
+				7C4D07E32015C4810043C1C6 /* RouteBase.swift */,
 				7CE2E7E7200E23B1008D882F /* Image.swift */,
 				7C8591FA20123AE000F52277 /* Direction.swift */,
 			);
@@ -256,6 +263,43 @@
 				451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		7C4D07DE2015C0D70043C1C6 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */,
+				7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		7C4D07E52015CE960043C1C6 /* Travel */ = {
+			isa = PBXGroup;
+			children = (
+				4501F0082008FF3F009E4582 /* TravelViewController.swift */,
+				4537E5812008F18400C2627B /* TravelSomeViewController.swift */,
+				4537E579200889DB00C2627B /* CreateNewTravelViewController.swift */,
+			);
+			path = Travel;
+			sourceTree = "<group>";
+		};
+		7C4D07E62015D1EF0043C1C6 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				455B38C31FE73A900084DC35 /* MenuViewController.swift */,
+				7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		7C4D07E72015D1FA0043C1C6 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				45521F792005E97600775E10 /* RoutesViewController.swift */,
+				7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */,
+			);
+			path = Routes;
 			sourceTree = "<group>";
 		};
 		7CE2E7E4200E0EA6008D882F /* StorageService */ = {
@@ -346,6 +390,7 @@
 				45C6002E200CEAFF00A4C3DC /* Authorization.storyboard in Resources */,
 				45C60032200CED4900A4C3DC /* Routes.storyboard in Resources */,
 				45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */,
+				7C4D07E22015C1730043C1C6 /* RoutesTableViewCell.xib in Resources */,
 				45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */,
 				45F147851FE725C100666CB8 /* Main.storyboard in Resources */,
 				4537E57E2008DAA900C2627B /* TravelTableViewCell.xib in Resources */,
@@ -438,15 +483,18 @@
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
 				45F147821FE725C100666CB8 /* LoginViewController.swift in Sources */,
 				4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */,
+				7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */,
 				7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */,
 				45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */,
 				4537E56020075E8700C2627B /* TravelBase.swift in Sources */,
+				7C4D07E92015D4270043C1C6 /* CreateNewRouteViewController.swift in Sources */,
 				451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */,
 				4501F0092008FF3F009E4582 /* TravelViewController.swift in Sources */,
 				4537E5802008DADC00C2627B /* TravelTableViewCell.swift in Sources */,
 				455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */,
 				457DB9441FFFCE0C0024E908 /* UserModel.swift in Sources */,
 				45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */,
+				7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */,
 				4537E56E2007945400C2627B /* DatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

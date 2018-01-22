@@ -1,38 +1,29 @@
 //
-//  CreateNewTravelViewController.swift
+//  CreateNewRouteViewController.swift
 //  TravelHelp
 //
-//  Created by air on 12.01.2018.
+//  Created by Nikita  Kuratnik on 22.01.18.
 //  Copyright © 2018 dogDeveloper. All rights reserved.
 //
 
 import UIKit
 import GoogleMaps
 import GooglePlaces
-import GooglePlacePicker
 import PKHUD
 
-class CreateNewTravelViewController: UIViewController {
+class CreateNewRouteViewController: UIViewController {
 
-   
-    @IBOutlet private weak var mapView: UIView!
-    @IBOutlet private weak var travelPhotoImage: UIImageView!
-    @IBOutlet private weak var addPhoto: AnimationButton!
-    @IBOutlet private weak var createButton: AnimationButton!
-    @IBOutlet private weak var nameTravelTextField: UITextField!
-    @IBOutlet private weak var dateStartTextField: UITextField!
-    @IBOutlet private weak var endDateTravelTextField: UITextField!
-    @IBOutlet private weak var discriptionTextField: UITextField!
-    
+    @IBOutlet weak var addPhoto: UIButton!
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet weak var routeImage: UIImageView!
+    @IBOutlet weak var mapView: UIView!
+    private var route: RouteBase?
+    private var user: UserModel? = AutorizationService.shared.localUser
     private var map: GMSMapView!
     private var marker: GMSMarker!
-    private var placeArrayCoordinate: Array<CLLocationCoordinate2D> = []
-    private var placeNameArray: Array<String> = []
-    private var user: UserModel? = AutorizationService.shared.localUser
     private var placesClient: GMSPlacesClient!
+    private var placeNameArray: Array<String> = []
     private var imageModel: Image?
-    private var travel: TravelBase?
-    private var pathRoutes: GMSMutablePath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +39,7 @@ class CreateNewTravelViewController: UIViewController {
     }
     
     func setupInterface() {
-        addPhoto.layer.cornerRadius = addPhoto.frame.height / 6
-        createButton.layer.cornerRadius = createButton.frame.height / 2
-        nameTravelTextField.delegate = self
-        dateStartTextField.delegate = self
-        endDateTravelTextField.delegate = self
-        discriptionTextField.delegate = self
+        nameTextField.delegate = self
     }
     
     func setupNotification() {
@@ -73,36 +59,6 @@ class CreateNewTravelViewController: UIViewController {
         }
     }
     
-   
-    @IBAction func create(_ sender: AnimationButton) {
-        guard
-            let name = nameTravelTextField.text,
-            let dateStart = dateStartTextField.text,
-            let endDate = endDateTravelTextField.text,
-            let discription = discriptionTextField.text,
-            name != "",
-            dateStart != "",
-            endDate != "",
-            discription != ""
-        else{
-            return
-        }
-        HUD.show(.progress)
-        self.travel = DatabaseService.shared.addTravel(name: name,
-                                                       user: user,
-                                                       dateStart: dateStart,
-                                                       endDate: endDate,
-                                                       discription: discription)
-        if let image = self.imageModel,
-            let user = AutorizationService.shared.localUser,
-            let travel = self.travel {
-            StorageService.shared.saveImageTravel(image: image, user: user, travel: travel){
-                HUD.hide()
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
     func setupMap() {
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -119,23 +75,11 @@ class CreateNewTravelViewController: UIViewController {
             print("Not found user location")
         }
     }
-    
-    @IBAction func pickPlace(_ sender: UIButton) {
-        let config = GMSPlacePickerConfig(viewport: nil)
-        let placePicker = GMSPlacePickerViewController(config: config)
-        present(placePicker, animated: true, completion: nil)
-    }
-    
-    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
-        viewController.dismiss(animated: true, completion: nil)
-        print("Place name \(place.name)")
-        print("Place address \(String(describing: place.formattedAddress))")
-        print("Place attributions \(String(describing: place.attributions))")
-    }
-    
-    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        print("No place selected")
+
+    @IBAction func createButton(_ sender: UIButton) {
+        guard let name = nameTextField.text, name != "" else {return}
+        self.route = DatabaseService.shared.addRoute(name: name, user: user)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addPlace(_ sender: UIButton) {
@@ -143,10 +87,22 @@ class CreateNewTravelViewController: UIViewController {
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
+    
 }
 
-extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    @IBAction func addPhoto(_ sender: AnimationButton) {
+extension  CreateNewRouteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.endEditing(true)
+        return true
+    }
+    
+    @objc func dissmisText(){
+        nameTextField.endEditing(true)
+    }
+}
+
+extension CreateNewRouteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    @IBAction func addPhoto(_ sender: UIButton) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -159,7 +115,7 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavi
         if  let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
             let url = info[UIImagePickerControllerImageURL] as? NSURL,
             let pathExtension = url.pathExtension {
-            travelPhotoImage.image = image
+            routeImage.image = image
             addPhoto.isHidden = true
             imageModel = Image(image: image, extention: pathExtension)
         }else{
@@ -173,28 +129,9 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavi
     }
 }
 
-extension  CreateNewTravelViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
-        discriptionTextField.endEditing(true)
-        return true
-    }
-    
-    @objc func dissmisText(){
-        nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
-        discriptionTextField.endEditing(true)
-    }
-}
-
-extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
+extension CreateNewRouteViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         placeNameArray.append(place.placeID)
-        placeArrayCoordinate.append(place.coordinate)
-        
         marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.map = map
@@ -207,12 +144,22 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                 guard error == nil else { return }
                 do{
                     let direction = try JSONDecoder().decode(Derection.self, from: data)
+                    let routes = direction.routes
+                    for route in routes{
+                        let routeOverviewPolyline = route.overview_polyline
+                        let points = routeOverviewPolyline.points
+                        let path = GMSPath(fromEncodedPath: points)
+                        let polyline = GMSPolyline(path: path)
+                        polyline.strokeWidth = 4
+                        polyline.strokeColor = .red
+                        polyline.map = self.map
+                    }
                     print(direction)
                 }catch let error{
                     print(error)
                 }
-            }.resume()
-        dismiss(animated: true, completion: nil)
+                }.resume()
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -248,3 +195,4 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
         })
     }
 }
+

@@ -17,5 +17,4 @@ target 'TravelHelp' do
   	pod 'GoogleMaps'
 	pod 'Kingfisher' 
 	pod 'PKHUD'
-
 end

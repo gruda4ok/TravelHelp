@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 typealias TravelsSnapshotClosureType = (_ travels: Array<TravelBase>) -> Void
+typealias RoutesSnapshotClosureType = (_ routes: Array<RouteBase>) -> Void
 
 class DatabaseService {
     
@@ -37,7 +38,7 @@ class DatabaseService {
         }
     }
     
-    func addTravel(name: String?, user: UserModel?, dateStart: String?, endDate: String?, discription: String?) -> TravelBase?{
+    func addTravel(name: String?, user: UserModel?, dateStart: String?, endDate: String?, discription: String?) -> TravelBase? {
         guard
             let user = user,
             let name = name,
@@ -57,5 +58,30 @@ class DatabaseService {
         travelRef.setValue(travel.convertToDictionary())
         
         return travel
+    }
+    
+    func snapshotRoutes(complition: @escaping RoutesSnapshotClosureType) {
+        let ref = Database.database().reference(withPath: "route")
+        ref.observe(.value) {(snapshot) in
+            let routes = snapshot.children.flatMap{
+                return RouteBase(snapshot: $0 as! DataSnapshot)
+            }
+            complition(routes)
+        }
+    }
+    
+    func addRoute(name: String?, user: UserModel?) -> RouteBase? {
+        guard
+            let user = user,
+            let name = name
+        else{
+            return nil
+        }
+        let ref = Database.database().reference(withPath: "route")
+        let route = RouteBase(routeID: name, userID: user.uid)
+        let routeRef = ref.child(route.routeID.lowercased())
+        routeRef.setValue(route.convertToDictionary())
+        
+        return route
     }
 }
