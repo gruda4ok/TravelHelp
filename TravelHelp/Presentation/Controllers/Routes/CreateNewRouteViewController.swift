@@ -13,10 +13,13 @@ import PKHUD
 
 class CreateNewRouteViewController: UIViewController {
 
-    @IBOutlet weak var addPhoto: UIButton!
+    @IBOutlet private weak var timeRouteTextField: UITextField!
+    @IBOutlet private weak var cityTextField: UITextField!
+    @IBOutlet private weak var countriTextField: UITextField!
+    @IBOutlet private weak var addPhoto: UIButton!
     @IBOutlet private weak var nameTextField: UITextField!
-    @IBOutlet weak var routeImage: UIImageView!
-    @IBOutlet weak var mapView: UIView!
+    @IBOutlet private weak var routeImage: UIImageView!
+    @IBOutlet private weak var mapView: UIView!
     private var route: RouteBase?
     private var user: UserModel? = AutorizationService.shared.localUser
     private var map: GMSMapView!
@@ -40,6 +43,13 @@ class CreateNewRouteViewController: UIViewController {
     
     func setupInterface() {
         nameTextField.delegate = self
+        cityTextField.delegate = self
+        countriTextField.delegate = self
+        timeRouteTextField.delegate = self
+        nameTextField.keyboardAppearance = .dark
+        cityTextField.keyboardAppearance = .dark
+        countriTextField.keyboardAppearance = .dark
+        timeRouteTextField.keyboardAppearance = .dark
     }
     
     func setupNotification() {
@@ -77,9 +87,20 @@ class CreateNewRouteViewController: UIViewController {
     }
 
     @IBAction func createButton(_ sender: UIButton) {
-        guard let name = nameTextField.text, name != "" else {return}
+        guard
+            let name = nameTextField.text,
+            let city = cityTextField.text,
+            let countri = countriTextField.text,
+            let timeRoute = timeRouteTextField.text,
+            name != "",
+            city != "",
+            countri != "",
+            timeRoute != ""
+        else {
+            return
+        }
         HUD.show(.progress)
-        self.route = DatabaseService.shared.addRoute(name: name, user: user)
+        self.route = DatabaseService.shared.addRoute(name: name, user: user, city: city, countri: countri, timeRoute: timeRoute)
         if let imageRoute = self.imageModel {
             StorageService.shared.saveRouteImage(image: imageRoute, route: route)
             HUD.hide()
@@ -92,17 +113,22 @@ class CreateNewRouteViewController: UIViewController {
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
-    
 }
 
 extension  CreateNewRouteViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.endEditing(true)
+        countriTextField.endEditing(true)
+        cityTextField.endEditing(true)
+        timeRouteTextField.endEditing(true)
         return true
     }
     
     @objc func dissmisText(){
         nameTextField.endEditing(true)
+        countriTextField.endEditing(true)
+        cityTextField.endEditing(true)
+        timeRouteTextField.endEditing(true)
     }
 }
 
@@ -156,7 +182,6 @@ extension CreateNewRouteViewController: GMSAutocompleteViewControllerDelegate {
                     }
                 }
             })
-            
             dismiss(animated: true, completion: nil)
         }
     }

@@ -51,6 +51,10 @@ class CreateNewTravelViewController: UIViewController {
         dateStartTextField.delegate = self
         endDateTravelTextField.delegate = self
         discriptionTextField.delegate = self
+        nameTravelTextField.keyboardAppearance = .dark
+        dateStartTextField.keyboardAppearance = .dark
+        endDateTravelTextField.keyboardAppearance = .dark
+        discriptionTextField.keyboardAppearance = .dark
     }
     
     func setupNotification() {
@@ -58,7 +62,7 @@ class CreateNewTravelViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
-    @objc func keyBoardDidShow(notification: Notification){
+    @objc func keyBoardDidShow(notification: Notification) {
         if let view = view as? UIScrollView {
             view.setContentOffset(CGPoint(x:0,y:0), animated: true)
         }

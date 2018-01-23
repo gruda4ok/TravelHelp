@@ -19,8 +19,10 @@ class RoutesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
+        setupNotification()
         searchBar.delegate = self
         searchBar.returnKeyType = .done
+        searchBar.keyboardAppearance = .dark
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +35,23 @@ class RoutesViewController: UIViewController {
     func setupInterface() {
         routesTableView.tableFooterView = UIView()
         routesTableView.register(UINib(nibName: String(describing: RoutesTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: RoutesTableViewCell.self))
+    }
+    
+    func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+    }
+    
+    @objc func keyBoardDidShow(notification: Notification){
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
+    }
+    
+    @objc func keyBoardDidHide() {
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
 }
 
@@ -47,6 +66,9 @@ extension RoutesViewController: UISearchBarDelegate {
             filterData = routesArray.filter({$0.routeID == searchBar.text})
             routesTableView.reloadData()
         }
+    }
+    @objc func dissmisText() {
+        searchBar.endEditing(true)
     }
 }
 

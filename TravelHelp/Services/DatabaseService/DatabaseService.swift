@@ -70,15 +70,18 @@ class DatabaseService {
         }
     }
     
-    func addRoute(name: String?, user: UserModel?) -> RouteBase? {
+    func addRoute(name: String?, user: UserModel?, city: String?, countri: String?, timeRoute: String?) -> RouteBase? {
         guard
             let user = user,
-            let name = name
+            let name = name,
+            let city = city,
+            let countri = countri,
+            let timeRoute = timeRoute
         else{
             return nil
         }
         let ref = Database.database().reference(withPath: "route")
-        let route = RouteBase(routeID: name, userID: user.uid)
+        let route = RouteBase(routeID: name, userID: user.uid, city: city, countri: countri, timeRoute: timeRoute)
         let routeRef = ref.child(route.routeID.lowercased())
         routeRef.setValue(route.convertToDictionary())
         
