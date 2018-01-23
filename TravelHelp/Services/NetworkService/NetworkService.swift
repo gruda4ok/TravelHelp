@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Alamofire
 
 typealias RequestClosure = (_ data: Data?, _ error: Error?) -> Void
 
 class NetworkService {
     static let shared = NetworkService()
     
-    // MARK: - Requests
+    // MARK: Requests
     
     func get(path: String, parameters: [String: Any]?, completion: @escaping RequestClosure) {
         request("GET", path: path, parameters: parameters, completion: completion)
@@ -27,9 +28,8 @@ class NetworkService {
         print("Request '\(path)', '\(method)' [.]")
         let params = (parameters == nil ? "[]" : (parameters!.isEmpty ? "[]" : parameters!.description))
         print("Parameters: \(params)")
-        
         var urlRequest: URLRequest!
-        
+
         if method == "GET"{
             let urlComp = NSURLComponents(string: path)!
             var items = [URLQueryItem]()
@@ -42,7 +42,6 @@ class NetworkService {
             }
             urlRequest = URLRequest(url: urlComp.url!)
             urlRequest.httpMethod = method
-            
         }
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             completion(data, error)

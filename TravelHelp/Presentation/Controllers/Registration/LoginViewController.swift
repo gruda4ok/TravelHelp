@@ -9,6 +9,7 @@
 import UIKit
 import AccountKit
 import Firebase
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupGesture()
         setupNotification()
+        setupInterface()
         
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
@@ -33,8 +35,6 @@ class LoginViewController: UIViewController {
       
     }
 
-    
-    
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
         view.addGestureRecognizer(tapGesture)
@@ -50,6 +50,10 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
+        let loginButtonFB = FBSDKLoginButton()
+        loginButtonFB.delegate = self
+        loginButtonFB.frame = CGRect(x: 16, y: 450, width: view.frame.width - 40, height: 50)
+        view.addSubview(loginButtonFB)
     }
     
     
@@ -78,6 +82,8 @@ class LoginViewController: UIViewController {
         loginViewController.delegate = self
         loginViewController.setAdvancedUIManager(nil)
     }
+    
+    
     
     @objc func keyBoardDidShow(notification: Notification) {
         guard let userInfo = notification.userInfo else {return}
@@ -145,5 +151,29 @@ extension LoginViewController: AKFViewControllerDelegate {
         viewController.enableSendToFacebook = true
         self.prepareLoginViewController(viewController)
         self.present(viewController as! UIViewController, animated: true, completion: nil)
+    }
+}
+
+extension LoginViewController: FBSDKLoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Did logOut")
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+       // let userLink = FBSDKProfile.current().linkURL
+        let email = FBSDKProfile.current().linkURL
+        let nameFB = FBSDKProfile.current().name
+        var values = [String: AnyObject]()
+        let link = String(describing: email!)
+        values = ["email" : link as AnyObject]
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+            if user != nil {
+                DatabaseService.shared.saveUser(uid: user!.uid, email: link, name: nameFB!, phoneNumber: "None")
+                self.performSegue(withIdentifier: "ShowMwnu", sender: nil)
+            }
+            
+        }
     }
 }
