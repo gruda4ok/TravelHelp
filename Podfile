@@ -14,8 +14,9 @@ target 'TravelHelp' do
   	pod 'GoogleMaps'
 	pod 'Kingfisher' 
 	pod 'PKHUD'
-	pod 'FBSDKCoreKit'
-	pod 'FBSDKShareKit'
-	pod 'FBSDKLoginKit'
+	pod 'FacebookCore'
+	pod 'FacebookLogin'
+	pod 'FacebookShare'
+	pod 'KeychainAccess'
 
 end

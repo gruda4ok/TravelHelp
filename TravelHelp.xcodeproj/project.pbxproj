@@ -35,9 +35,10 @@
 		7C4D07E22015C1730043C1C6 /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */; };
 		7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E32015C4810043C1C6 /* RouteBase.swift */; };
 		7C4D07E92015D4270043C1C6 /* CreateNewRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */; };
-		7C858D0020160DB10043E25A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C858CFF20160DB10043E25A /* NetworkService.swift */; };
+		7C858D0020160DB10043E25A /* NetworkServiceWithUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C858CFF20160DB10043E25A /* NetworkServiceWithUrlSession.swift */; };
 		7C858D0320161B2C0043E25A /* DirectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C858D0220161B2C0043E25A /* DirectionService.swift */; };
 		7C8591FB20123AE000F52277 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8591FA20123AE000F52277 /* Direction.swift */; };
+		7CB3862E2018BB830014C6B8 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3862D2018BB830014C6B8 /* NetworkServiceProtocol.swift */; };
 		7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E5200E0EC8008D882F /* StorageService.swift */; };
 		7CE2E7E8200E23B1008D882F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E7200E23B1008D882F /* Image.swift */; };
 		7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */; };
@@ -76,9 +77,11 @@
 		7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
 		7C4D07E32015C4810043C1C6 /* RouteBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBase.swift; sourceTree = "<group>"; };
 		7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewRouteViewController.swift; sourceTree = "<group>"; };
-		7C858CFF20160DB10043E25A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7C858CFF20160DB10043E25A /* NetworkServiceWithUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceWithUrlSession.swift; sourceTree = "<group>"; };
 		7C858D0220161B2C0043E25A /* DirectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionService.swift; sourceTree = "<group>"; };
 		7C8591FA20123AE000F52277 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		7CB38628201861890014C6B8 /* TravelHelp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelHelp.entitlements; sourceTree = "<group>"; };
+		7CB3862D2018BB830014C6B8 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		7CE2E7E5200E0EC8008D882F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7CE2E7E7200E23B1008D882F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +254,7 @@
 		45F1477E1FE725C100666CB8 /* TravelHelp */ = {
 			isa = PBXGroup;
 			children = (
+				7CB38628201861890014C6B8 /* TravelHelp.entitlements */,
 				7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */,
 				4537E56B200793EC00C2627B /* Services */,
 				4537E568200791C800C2627B /* Application */,
@@ -311,7 +315,8 @@
 		7C858CFE20160D980043E25A /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				7C858CFF20160DB10043E25A /* NetworkService.swift */,
+				7C858CFF20160DB10043E25A /* NetworkServiceWithUrlSession.swift */,
+				7CB3862D2018BB830014C6B8 /* NetworkServiceProtocol.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -377,6 +382,9 @@
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
 							};
@@ -434,8 +442,12 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -448,8 +460,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -508,7 +524,7 @@
 			files = (
 				7CE2E7E8200E23B1008D882F /* Image.swift in Sources */,
 				7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */,
-				7C858D0020160DB10043E25A /* NetworkService.swift in Sources */,
+				7C858D0020160DB10043E25A /* NetworkServiceWithUrlSession.swift in Sources */,
 				4537E5822008F18400C2627B /* TravelSomeViewController.swift in Sources */,
 				7C8591FB20123AE000F52277 /* Direction.swift in Sources */,
 				45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */,
@@ -520,6 +536,7 @@
 				7C858D0320161B2C0043E25A /* DirectionService.swift in Sources */,
 				7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */,
 				45F147801FE725C100666CB8 /* AppDelegate.swift in Sources */,
+				7CB3862E2018BB830014C6B8 /* NetworkServiceProtocol.swift in Sources */,
 				4537E56020075E8700C2627B /* TravelBase.swift in Sources */,
 				7C4D07E92015D4270043C1C6 /* CreateNewRouteViewController.swift in Sources */,
 				451459022000EFCE0095149B /* RegistrationNewPersonViewController.swift in Sources */,
@@ -668,6 +685,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TravelHelp/TravelHelp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 62W9CK9HS5;
 				INFOPLIST_FILE = "$(SRCROOT)/TravelHelp/Supporting Files /Info.plist";
@@ -685,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TravelHelp/TravelHelp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 62W9CK9HS5;
 				INFOPLIST_FILE = "$(SRCROOT)/TravelHelp/Supporting Files /Info.plist";

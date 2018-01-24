@@ -16,7 +16,7 @@ class DirectionService{
     static let shared = DirectionService()
 
     func getDirection(firstPlace: GMSPlace, secondPlace: GMSPlace, completion: @escaping DirectionClosure) {
-        NetworkService.shared.get(path: "https://maps.googleapis.com/maps/api/directions/json",
+        NetworkServiceWithUrlSession.shared.get(path: "https://maps.googleapis.com/maps/api/directions/json",
                                   parameters: ["origin" :"place_id:\(firstPlace.placeID)",
                                     "destination": "place_id:\(secondPlace.placeID)",
                                     "key": "AIzaSyBLTV2SSUBOdqE64iTztDYVAxlpYyj5rJY"],

@@ -9,6 +9,8 @@
 import UIKit
 import AccountKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class MenuViewController: UIViewController  {
     
@@ -40,7 +42,10 @@ class MenuViewController: UIViewController  {
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         accoutnKit.logOut()
         try? Auth.auth().signOut()
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
         dismiss(animated: true, completion: nil)
+        
     }
 }
 

@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import Alamofire
 
 typealias RequestClosure = (_ data: Data?, _ error: Error?) -> Void
 
-class NetworkService {
-    static let shared = NetworkService()
+class NetworkServiceWithUrlSession: NetworkServiceProtocol {
+    static let shared = NetworkServiceWithUrlSession()
     
     // MARK: Requests
     

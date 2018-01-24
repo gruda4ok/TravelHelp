@@ -9,7 +9,8 @@
 import UIKit
 import AccountKit
 import Firebase
-import FBSDKLoginKit
+import FacebookCore
+import FacebookLogin
 
 class LoginViewController: UIViewController {
 
@@ -23,16 +24,18 @@ class LoginViewController: UIViewController {
     var accoutnKit: AKFAccountKit!
     
     //MARK: - Live cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGesture()
         setupNotification()
         setupInterface()
-        
+        setupFacebook()
+       
+      
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
         }
-      
     }
 
     func setupGesture() {
@@ -45,20 +48,54 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
+    func setupFacebook() {
+        let myLoginButton = UIButton(type: .custom)
+        myLoginButton.backgroundColor = UIColor.darkGray
+        myLoginButton.frame = CGRect(x: 0, y: 0, width: 60, height: 200)
+        myLoginButton.center = view.center
+        myLoginButton.setTitle("My Login Button", for: .normal)
+        myLoginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        view.addSubview(myLoginButton)
+    }
+    
+    @objc func loginButtonClicked() {
+        let loginManager = LoginManager()
+        loginManager.logIn(readPermissions: [.publicProfile], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success( _, _, let accessToken):
+                print("Logged in!")
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    guard
+                        let email = user?.email,
+                        let uid = user?.uid,
+                        let name = user?.displayName
+                    else {
+                        return
+                    }
+                    DatabaseService.shared.saveUser(uid: uid, email: email, name: name, phoneNumber: "None")
+                    self.performSegue(withIdentifier: "ShowMenu", sender: nil)
+                }
+            }
+        }
+    }
+
+    
     func setupInterface() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
-        let loginButtonFB = FBSDKLoginButton()
-        loginButtonFB.delegate = self
-        loginButtonFB.frame = CGRect(x: 16, y: 450, width: view.frame.width - 40, height: 50)
-        view.addSubview(loginButtonFB)
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if user != nil{
                 self?.performSegue(withIdentifier: "ShowMenu", sender: nil)
@@ -69,6 +106,9 @@ class LoginViewController: UIViewController {
                             self.performSegue(withIdentifier: "ShowMenu", sender: self)
                         })
             self.performSegue(withIdentifier: "ShowMenu", sender: self)
+        }
+        if AccessToken.current != nil {
+            performSegue(withIdentifier: "ShowMenu", sender: nil)
         }
     }
     
@@ -82,8 +122,6 @@ class LoginViewController: UIViewController {
         loginViewController.delegate = self
         loginViewController.setAdvancedUIManager(nil)
     }
-    
-    
     
     @objc func keyBoardDidShow(notification: Notification) {
         guard let userInfo = notification.userInfo else {return}
@@ -154,26 +192,37 @@ extension LoginViewController: AKFViewControllerDelegate {
     }
 }
 
-extension LoginViewController: FBSDKLoginButtonDelegate {
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Did logOut")
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-       // let userLink = FBSDKProfile.current().linkURL
-        let email = FBSDKProfile.current().linkURL
-        let nameFB = FBSDKProfile.current().name
-        var values = [String: AnyObject]()
-        let link = String(describing: email!)
-        values = ["email" : link as AnyObject]
-        
-        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            Auth.auth().signIn(with: credential) { (user, error) in
-            if user != nil {
-                DatabaseService.shared.saveUser(uid: user!.uid, email: link, name: nameFB!, phoneNumber: "None")
-                self.performSegue(withIdentifier: "ShowMwnu", sender: nil)
-            }
-            
-        }
-    }
-}
+//extension LoginViewController: Facebook {
+//    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+//        print("Did logOut")
+//    }
+//
+//    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+//        let userID = FBSDKAccessToken.current().userID
+//        var email: String?
+//        print(userID ?? "")
+//
+//        if  userID != nil{
+//
+//            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+//            Auth.auth().signIn(with: credential) { (user, error) in
+//                if user != nil {
+//                    guard
+//                        let userID = userID,
+//                        let email = email
+//                    else{
+//                        return
+//                    }
+//                    DatabaseService.shared.saveUser(uid: userID, email: email, name: "", phoneNumber: "None")
+//                    self.performSegue(withIdentifier: "ShowMwnu", sender: nil)
+//                }else{
+//                    print(error.debugDescription)
+//                }
+//            }
+//        }else{
+//            print("Error\(error.localizedDescription)")
+//            return
+//        }
+//    }
+//}
+
