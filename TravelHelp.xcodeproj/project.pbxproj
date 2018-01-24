@@ -39,6 +39,7 @@
 		7C858D0320161B2C0043E25A /* DirectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C858D0220161B2C0043E25A /* DirectionService.swift */; };
 		7C8591FB20123AE000F52277 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8591FA20123AE000F52277 /* Direction.swift */; };
 		7CB3862E2018BB830014C6B8 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3862D2018BB830014C6B8 /* NetworkServiceProtocol.swift */; };
+		7CB386302018CE8A0014C6B8 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3862F2018CE8A0014C6B8 /* AccountsViewController.swift */; };
 		7CE2E7E6200E0EC8008D882F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E5200E0EC8008D882F /* StorageService.swift */; };
 		7CE2E7E8200E23B1008D882F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E7200E23B1008D882F /* Image.swift */; };
 		7CE2E7EA200E38C5008D882F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */; };
@@ -82,6 +83,7 @@
 		7C8591FA20123AE000F52277 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		7CB38628201861890014C6B8 /* TravelHelp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelHelp.entitlements; sourceTree = "<group>"; };
 		7CB3862D2018BB830014C6B8 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		7CB3862F2018CE8A0014C6B8 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		7CE2E7E5200E0EC8008D882F /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7CE2E7E7200E23B1008D882F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		7CE2E7E9200E38C5008D882F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				45F147811FE725C100666CB8 /* LoginViewController.swift */,
 				451459012000EFCE0095149B /* RegistrationNewPersonViewController.swift */,
+				7CB3862F2018CE8A0014C6B8 /* AccountsViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				45F147881FE725C100666CB8 /* TravelHelp.xcdatamodeld in Sources */,
 				4537E57120079AF500C2627B /* AutorizationService.swift in Sources */,
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
+				7CB386302018CE8A0014C6B8 /* AccountsViewController.swift in Sources */,
 				45F147821FE725C100666CB8 /* LoginViewController.swift in Sources */,
 				4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */,
 				7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */,

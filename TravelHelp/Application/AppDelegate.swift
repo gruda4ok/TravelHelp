@@ -12,6 +12,7 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import GooglePlacePicker
+import FacebookCore
 import FBSDKCoreKit
 
 @UIApplicationMain

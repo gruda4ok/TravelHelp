@@ -73,11 +73,12 @@ class LoginViewController: UIViewController {
                     guard
                         let email = user?.email,
                         let uid = user?.uid,
-                        let name = user?.displayName
+                        let name = user?.displayName,
+                        let phoneNumber = user?.phoneNumber
                     else {
                         return
                     }
-                    DatabaseService.shared.saveUser(uid: uid, email: email, name: name, phoneNumber: "None")
+                    DatabaseService.shared.saveUser(uid: uid, email: email, name: name, phoneNumber: phoneNumber)
                     self.performSegue(withIdentifier: "ShowMenu", sender: nil)
                 }
             }
@@ -91,7 +92,6 @@ class LoginViewController: UIViewController {
         logInEmail.layer.cornerRadius = logInEmail.frame.height / 2
         logInPhone.layer.cornerRadius = logInPhone.frame.height / 2
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -124,14 +124,15 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyBoardDidShow(notification: Notification) {
-        guard let userInfo = notification.userInfo else {return}
-        let keyBoardFrameSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue ).cgRectValue
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:keyBoardFrameSize.height - 100), animated: true)
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
     
-    
-    @objc func keyBoardDidHide(){
-        (self.view as! UIScrollView).setContentOffset(CGPoint(x:0,y:0), animated: true)
+    @objc func keyBoardDidHide() {
+        if let view = view as? UIScrollView {
+            view.setContentOffset(CGPoint(x:0,y:0), animated: true)
+        }
     }
     
     // MARK: - Action
@@ -191,38 +192,4 @@ extension LoginViewController: AKFViewControllerDelegate {
         self.present(viewController as! UIViewController, animated: true, completion: nil)
     }
 }
-
-//extension LoginViewController: Facebook {
-//    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-//        print("Did logOut")
-//    }
-//
-//    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-//        let userID = FBSDKAccessToken.current().userID
-//        var email: String?
-//        print(userID ?? "")
-//
-//        if  userID != nil{
-//
-//            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-//            Auth.auth().signIn(with: credential) { (user, error) in
-//                if user != nil {
-//                    guard
-//                        let userID = userID,
-//                        let email = email
-//                    else{
-//                        return
-//                    }
-//                    DatabaseService.shared.saveUser(uid: userID, email: email, name: "", phoneNumber: "None")
-//                    self.performSegue(withIdentifier: "ShowMwnu", sender: nil)
-//                }else{
-//                    print(error.debugDescription)
-//                }
-//            }
-//        }else{
-//            print("Error\(error.localizedDescription)")
-//            return
-//        }
-//    }
-//}
 
