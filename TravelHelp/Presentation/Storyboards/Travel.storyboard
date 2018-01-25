@@ -163,152 +163,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYV-vu-4lq">
-                                <rect key="frame" x="0.0" y="20" width="375" height="1500"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gL0-lw-A6u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lvv-jY-Iq0" customClass="UIScrollView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name travel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KA3-o9-vdp">
-                                                <rect key="frame" x="20" y="243" width="134" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HLH-aE-5zI">
-                                                <rect key="frame" x="186" y="247" width="166" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date start " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezD-df-8ES">
-                                                <rect key="frame" x="20" y="283" width="115" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fj0-U1-Qf4">
-                                                <rect key="frame" x="150" y="283" width="204" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwL-09-oRa">
-                                                <rect key="frame" x="20" y="323" width="99" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpm-cx-33H">
-                                                <rect key="frame" x="20" y="363" width="129" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-ED-y3D">
-                                                <rect key="frame" x="144" y="323" width="208" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNw-s3-POO">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf2-D1-J9m" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
-                                                <rect key="frame" x="137" y="60" width="100" height="100"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.41356678299999999" green="0.41356678299999999" blue="0.41356678299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Add Photo">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addPhoto:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="5tx-Vj-l3H"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="der-wo-K0H">
-                                                <rect key="frame" x="20" y="403" width="332" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZjG-MG-6g1">
-                                                <rect key="frame" x="8" y="523" width="359" height="285"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSm-0x-AFP">
-                                                <rect key="frame" x="20" y="485" width="66" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="pickPlace"/>
-                                                <connections>
-                                                    <action selector="pickPlace:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="MQL-OO-4ex"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wE2-ih-Xop" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
-                                                <rect key="frame" x="81" y="1385" width="212" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.02747282748" green="0.02737817792" blue="0.027661008880000001" alpha="0.61245184080000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <state key="normal" title="Create">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="create:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="3Df-gN-hQn"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVG-28-m6T">
-                                                <rect key="frame" x="125" y="485" width="65" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="AddPlace"/>
-                                                <connections>
-                                                    <action selector="addPlace:" destination="Akj-qN-Q0x" eventType="touchUpInside" id="97Y-dv-a5J"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-Vn-2uk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
+                                        <color key="backgroundColor" red="0.039028801257060396" green="0.039658279872980699" blue="0.039993523316062207" alpha="0.698090889084507" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1500" id="0ZH-OE-sWO"/>
+                                            <constraint firstAttribute="height" constant="225" id="U9g-2Z-YKv"/>
                                         </constraints>
-                                    </view>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phz-cW-xy5">
+                                        <rect key="frame" x="137" y="62" width="100" height="100"/>
+                                        <color key="backgroundColor" red="0.093759979538089816" green="0.095272193601740468" blue="0.096077558290155407" alpha="0.698090889084507" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Add Photo">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name travel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inP-CM-oii">
+                                        <rect key="frame" x="8" y="233" width="359" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.093759979538089816" green="0.095272193601740468" blue="0.096077558290155407" alpha="0.3422095070422535" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" textContentType="name"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqL-uN-hVM">
+                                        <rect key="frame" x="0.0" y="302" width="375" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMn-4n-xbM">
+                                        <rect key="frame" x="0.0" y="523" width="375" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="htK-9h-YJo">
+                                        <rect key="frame" x="0.0" y="353" width="375" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="538558336.54956305">
+                                            <!--2018-01-25 07:32:16 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="66J-fi-jhi">
+                                        <rect key="frame" x="0.0" y="582" width="375" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="538558606.67345703">
+                                            <!--2018-01-25 07:36:46 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Discription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXn-Nb-5lr">
+                                        <rect key="frame" x="0.0" y="772" width="375" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wgD-HC-A3h">
+                                        <rect key="frame" x="8" y="831" width="359" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Lvv-jY-Iq0" firstAttribute="top" secondItem="MYV-vu-4lq" secondAttribute="top" id="2UV-5b-tlg"/>
-                                    <constraint firstItem="Lvv-jY-Iq0" firstAttribute="centerX" secondItem="MYV-vu-4lq" secondAttribute="centerX" id="GFs-Zi-yCf"/>
-                                    <constraint firstItem="Lvv-jY-Iq0" firstAttribute="leading" secondItem="MYV-vu-4lq" secondAttribute="leading" id="SjX-hE-Jem"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lvv-jY-Iq0" secondAttribute="trailing" id="utk-a8-nTl"/>
-                                    <constraint firstAttribute="bottom" secondItem="Lvv-jY-Iq0" secondAttribute="bottom" id="xQ8-20-TmR"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="centerX" secondItem="phz-cW-xy5" secondAttribute="centerX" id="Nb5-IM-LZ4"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="centerY" secondItem="phz-cW-xy5" secondAttribute="centerY" id="QzX-aa-Jl7"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="leading" secondItem="phz-cW-xy5" secondAttribute="trailing" constant="-237" id="REH-aR-S7g"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="top" secondItem="phz-cW-xy5" secondAttribute="bottom" constant="-162" id="Wtt-5k-QUr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ggz-Vn-2uk" secondAttribute="trailing" id="lHF-Lo-YHa"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="top" secondItem="gL0-lw-A6u" secondAttribute="top" id="xom-qp-JlL"/>
+                                    <constraint firstItem="Ggz-Vn-2uk" firstAttribute="leading" secondItem="gL0-lw-A6u" secondAttribute="leading" id="zwc-b6-LDl"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MYV-vu-4lq" firstAttribute="top" secondItem="1B7-Lg-pbw" secondAttribute="top" id="1tW-ea-L9c"/>
-                            <constraint firstItem="MYV-vu-4lq" firstAttribute="trailing" secondItem="1B7-Lg-pbw" secondAttribute="trailing" id="Dyl-u7-jnr"/>
-                            <constraint firstItem="MYV-vu-4lq" firstAttribute="bottom" secondItem="1B7-Lg-pbw" secondAttribute="bottom" constant="20" id="Eai-BH-aij"/>
-                            <constraint firstItem="MYV-vu-4lq" firstAttribute="leading" secondItem="1B7-Lg-pbw" secondAttribute="leading" id="mz9-ZO-YMh"/>
+                            <constraint firstItem="gL0-lw-A6u" firstAttribute="leading" secondItem="1B7-Lg-pbw" secondAttribute="leading" id="JSG-8c-tP8"/>
+                            <constraint firstItem="1B7-Lg-pbw" firstAttribute="bottom" secondItem="gL0-lw-A6u" secondAttribute="bottom" id="MhT-Kd-V6f"/>
+                            <constraint firstItem="1B7-Lg-pbw" firstAttribute="trailing" secondItem="gL0-lw-A6u" secondAttribute="trailing" id="Q4b-uV-6pA"/>
+                            <constraint firstItem="gL0-lw-A6u" firstAttribute="top" secondItem="Lm8-XI-aee" secondAttribute="top" id="QxW-3X-8pP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1B7-Lg-pbw"/>
                     </view>
                     <size key="freeformSize" width="375" height="1500"/>
-                    <connections>
-                        <outlet property="addPhoto" destination="Qf2-D1-J9m" id="7ta-il-Lw0"/>
-                        <outlet property="createButton" destination="wE2-ih-Xop" id="uOw-cu-KbT"/>
-                        <outlet property="dateStartTextField" destination="fj0-U1-Qf4" id="axS-bM-3vy"/>
-                        <outlet property="discriptionTextField" destination="der-wo-K0H" id="hSy-uv-Yt0"/>
-                        <outlet property="endDateTravelTextField" destination="i3h-ED-y3D" id="bW7-mu-0rn"/>
-                        <outlet property="mapView" destination="ZjG-MG-6g1" id="4hg-U2-r49"/>
-                        <outlet property="nameTravelTextField" destination="HLH-aE-5zI" id="g6q-0R-SHC"/>
-                        <outlet property="travelPhotoImage" destination="MNw-s3-POO" id="A6U-MT-Kc3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4g4-Qc-VRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,6 +14,7 @@ import PKHUD
 
 class CreateNewTravelViewController: UIViewController {
    
+    @IBOutlet weak var qrCodeImage: UIImageView!
     @IBOutlet private weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
     @IBOutlet private weak var addPhoto: AnimationButton!
@@ -39,6 +40,11 @@ class CreateNewTravelViewController: UIViewController {
         setupMap()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        qrCodeImage.image = qrcodeGenerator()
+    }
+    
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissmisText))
         view.addGestureRecognizer(tapGesture)
@@ -55,6 +61,7 @@ class CreateNewTravelViewController: UIViewController {
         dateStartTextField.keyboardAppearance = .dark
         endDateTravelTextField.keyboardAppearance = .dark
         discriptionTextField.keyboardAppearance = .dark
+        
     }
     
     func setupNotification() {
@@ -72,6 +79,30 @@ class CreateNewTravelViewController: UIViewController {
         if let view = view as? UIScrollView {
             view.setContentOffset(CGPoint(x:0,y:0), animated: true)
         }
+    }
+    
+    func qrcodeGenerator() -> UIImage {
+        var qrCodeString: String
+        if nameTravelTextField.text != "",
+           dateStartTextField.text != "",
+           endDateTravelTextField.text != "",
+           discriptionTextField.text != ""{
+             qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(String(describing: dateStartTextField.text)), end date = \(String(describing: endDateTravelTextField.text)), discription = \(String(describing: discriptionTextField.text))"
+        }else{
+           qrCodeString = ""
+        }
+        
+        let myString = qrCodeString
+        let data = myString.data(using: .ascii, allowLossyConversion: true)
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let img = UIImage(ciImage: (filter?.outputImage?.transformed(by: transform))!)
+        qrCodeImage.image = img
+        
+        return img
+        
     }
     
    

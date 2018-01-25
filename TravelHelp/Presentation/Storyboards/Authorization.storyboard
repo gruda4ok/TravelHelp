@@ -29,20 +29,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="YbB-Y0-dhy">
-                                <rect key="frame" x="0.0" y="247" width="375" height="360"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="YbB-Y0-dhy">
+                                <rect key="frame" x="0.0" y="247" width="375" height="339"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Rr2-ss-lr9">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="86"/>
+                                        <rect key="frame" x="10" y="0.0" width="355" height="79"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-uo-duv">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="37"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qbp-E3-7hn">
-                                                <rect key="frame" x="0.0" y="56" width="355" height="30"/>
+                                                <rect key="frame" x="0.0" y="49" width="355" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -50,10 +50,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dr2-c6-HSb">
-                                        <rect key="frame" x="62.5" y="137" width="250" height="86"/>
+                                        <rect key="frame" x="62.5" y="111" width="250" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRh-pT-TAw">
-                                                <rect key="frame" x="0.0" y="0.0" width="70" height="86"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="48"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="30"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,7 +63,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ez0-nk-Hl0">
-                                                <rect key="frame" x="98" y="0.0" width="152" height="86"/>
+                                                <rect key="frame" x="98" y="0.0" width="152" height="48"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="30"/>
                                                 <state key="normal" title="Registration">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,8 +77,18 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIF-F5-dz4">
+                                        <rect key="frame" x="16" y="191" width="343" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.698090889084507" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Login facebook ">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButtonClicked:" destination="hJO-19-aSe" eventType="touchUpInside" id="19r-UM-aaP"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zq3-lE-zzI">
-                                        <rect key="frame" x="100" y="274" width="175" height="86"/>
+                                        <rect key="frame" x="100" y="253" width="175" height="86"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7d-59-uYi" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="39"/>
@@ -96,7 +106,7 @@
                                                     <action selector="logInEmail:" destination="hJO-19-aSe" eventType="touchUpInside" id="4nO-L9-DKB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBY-8H-S9w" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBY-8H-S9w" customClass="AnimationButton" customModule="TravelHelp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="47" width="175" height="39"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.31908176370000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="22"/>
@@ -116,9 +126,11 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="xIF-F5-dz4" firstAttribute="leading" secondItem="YbB-Y0-dhy" secondAttribute="leading" constant="16" id="2dh-hQ-sji"/>
                                     <constraint firstItem="Zq3-lE-zzI" firstAttribute="leading" secondItem="YbB-Y0-dhy" secondAttribute="leading" constant="100" id="QfU-aB-sv3"/>
                                     <constraint firstAttribute="trailing" secondItem="Rr2-ss-lr9" secondAttribute="trailing" constant="10" id="SyG-gU-ddJ"/>
                                     <constraint firstItem="Rr2-ss-lr9" firstAttribute="leading" secondItem="YbB-Y0-dhy" secondAttribute="leading" constant="10" id="WPS-sk-x6e"/>
+                                    <constraint firstAttribute="trailing" secondItem="xIF-F5-dz4" secondAttribute="trailing" constant="16" id="kU9-pQ-pzx"/>
                                     <constraint firstAttribute="trailing" secondItem="Zq3-lE-zzI" secondAttribute="trailing" constant="100" id="nPO-b0-dSm"/>
                                 </constraints>
                             </stackView>
@@ -148,6 +160,7 @@
                         <outlet property="logInEmail" destination="Z7d-59-uYi" id="kvP-kU-gC3"/>
                         <outlet property="logInPhone" destination="GBY-8H-S9w" id="voG-cF-uhh"/>
                         <outlet property="loginButton" destination="fRh-pT-TAw" id="Sdq-Lv-j2U"/>
+                        <outlet property="loginFBButton" destination="YbB-Y0-dhy" id="0Vz-yE-FOM"/>
                         <outlet property="passwordTextField" destination="Qbp-E3-7hn" id="uUN-MW-dDT"/>
                         <segue destination="eCw-IY-lTv" kind="show" identifier="ShowMenu" id="jXS-h7-gLJ"/>
                     </connections>
@@ -340,7 +353,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="JB9-Wt-pUM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JB9-Wt-pUM">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JB9-Wt-pUM" id="pMu-8u-TyA">

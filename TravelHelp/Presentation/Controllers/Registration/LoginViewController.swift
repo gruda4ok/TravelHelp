@@ -14,6 +14,7 @@ import FacebookLogin
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginFBButton: UIStackView!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet private weak var logInEmail: AnimationButton!
@@ -30,8 +31,6 @@ class LoginViewController: UIViewController {
         setupGesture()
         setupNotification()
         setupInterface()
-        setupFacebook()
-       
       
         if accoutnKit == nil {
             self.accoutnKit = AKFAccountKit(responseType: .accessToken)
@@ -48,17 +47,7 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
-    func setupFacebook() {
-        let myLoginButton = UIButton(type: .custom)
-        myLoginButton.backgroundColor = UIColor.darkGray
-        myLoginButton.frame = CGRect(x: 0, y: 0, width: 60, height: 200)
-        myLoginButton.center = view.center
-        myLoginButton.setTitle("My Login Button", for: .normal)
-        myLoginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
-        view.addSubview(myLoginButton)
-    }
-    
-    @objc func loginButtonClicked() {
+    @IBAction func loginButtonClicked(_ sender: UIButton) {
         let loginManager = LoginManager()
         loginManager.logIn(readPermissions: [.publicProfile], viewController: self) { loginResult in
             switch loginResult {
@@ -85,7 +74,6 @@ class LoginViewController: UIViewController {
         }
     }
 
-    
     func setupInterface() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
