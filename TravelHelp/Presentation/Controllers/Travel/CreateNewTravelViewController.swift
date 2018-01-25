@@ -14,14 +14,18 @@ import PKHUD
 
 class CreateNewTravelViewController: UIViewController {
    
-    @IBOutlet weak var qrCodeImage: UIImageView!
+    @IBOutlet private weak var qrCodeImage: UIImageView!
     @IBOutlet private weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
-    @IBOutlet private weak var addPhoto: AnimationButton!
-    @IBOutlet private weak var createButton: AnimationButton!
+    @IBOutlet private weak var addPhoto: UIButton!
+    @IBOutlet private weak var createButton: UIButton!
     @IBOutlet private weak var nameTravelTextField: UITextField!
-    @IBOutlet private weak var dateStartTextField: UITextField!
-    @IBOutlet private weak var endDateTravelTextField: UITextField!
+    @IBOutlet private weak var startDatePicker: UIDatePicker!
+    @IBOutlet private weak var endDatePicker: UIDatePicker!
+    @IBOutlet private weak var routeTableView: UITableView!
+    @IBOutlet private weak var placeStayTableView: UITableView!
+    @IBOutlet private weak var pricesTableView: UITableView!
+    @IBOutlet private weak var requirementTableView: UITableView!
     @IBOutlet private weak var discriptionTextField: UITextField!
     
     private var map: GMSMapView!
@@ -54,12 +58,8 @@ class CreateNewTravelViewController: UIViewController {
         addPhoto.layer.cornerRadius = addPhoto.frame.height / 6
         createButton.layer.cornerRadius = createButton.frame.height / 2
         nameTravelTextField.delegate = self
-        dateStartTextField.delegate = self
-        endDateTravelTextField.delegate = self
         discriptionTextField.delegate = self
         nameTravelTextField.keyboardAppearance = .dark
-        dateStartTextField.keyboardAppearance = .dark
-        endDateTravelTextField.keyboardAppearance = .dark
         discriptionTextField.keyboardAppearance = .dark
         
     }
@@ -84,33 +84,29 @@ class CreateNewTravelViewController: UIViewController {
     func qrcodeGenerator() -> UIImage {
         var qrCodeString: String
         if nameTravelTextField.text != "",
-           dateStartTextField.text != "",
-           endDateTravelTextField.text != "",
+           startDatePicker.date.description != "",
+           endDatePicker.date.description != "",
            discriptionTextField.text != ""{
-             qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(String(describing: dateStartTextField.text)), end date = \(String(describing: endDateTravelTextField.text)), discription = \(String(describing: discriptionTextField.text))"
+             qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(startDatePicker.date.description)), end date = \(endDatePicker.date.description)), discription = \(String(describing: discriptionTextField.text))"
         }else{
            qrCodeString = ""
         }
-        
         let myString = qrCodeString
         let data = myString.data(using: .ascii, allowLossyConversion: true)
         let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setValue(data, forKey: "inputMessage")
-        
         let transform = CGAffineTransform(scaleX: 10, y: 10)
         let img = UIImage(ciImage: (filter?.outputImage?.transformed(by: transform))!)
         qrCodeImage.image = img
         
         return img
-        
     }
     
-   
-    @IBAction func create(_ sender: AnimationButton) {
+    @IBAction func create(_ sender: UIButton) {
         guard
             let name = nameTravelTextField.text,
-            let dateStart = dateStartTextField.text,
-            let endDate = endDateTravelTextField.text,
+            let dateStart = startDatePicker?.date.description,
+            let endDate = endDatePicker?.date.description,
             let discription = discriptionTextField.text,
             name != "",
             dateStart != "",
@@ -175,10 +171,50 @@ class CreateNewTravelViewController: UIViewController {
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
+    
+    @IBAction func addPlaceStayButton(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Add place stay", message: "place stay", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Name place"
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Price"
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: {
+            (alert) -> Void in
+            
+            let namePlace = alertController.textFields![0] as UITextField
+            let price = alertController.textFields![1] as UITextField
+            
+            print("Email -- \(namePlace.text!), Password -- \(price.text!)")
+        })
+        
+        alertController.addAction(submitAction)
+        alertController.view.tintColor = UIColor.black
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func addPriceButton(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Add price", message: "Add the expenses associated with the trip", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Price"
+            textField.keyboardType = .numberPad
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Price for"
+        }
+    }
+    
+    @IBAction func addRequirementButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func showQRcodeButton(_ sender: UIButton) {
+    }
 }
 
 extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    @IBAction func addPhoto(_ sender: AnimationButton) {
+    @IBAction func addPhoto(_ sender: UIButton) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -208,16 +244,12 @@ extension CreateNewTravelViewController: UIImagePickerControllerDelegate, UINavi
 extension  CreateNewTravelViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
         discriptionTextField.endEditing(true)
         return true
     }
     
     @objc func dissmisText(){
         nameTravelTextField.endEditing(true)
-        dateStartTextField.endEditing(true)
-        endDateTravelTextField.endEditing(true)
         discriptionTextField.endEditing(true)
     }
 }
@@ -244,7 +276,6 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                     }
                 }
             })
-            
         dismiss(animated: true, completion: nil)
         }
     }
