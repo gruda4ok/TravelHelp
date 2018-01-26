@@ -31,6 +31,7 @@
 		45F1478A1FE725C100666CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F147891FE725C100666CB8 /* Assets.xcassets */; };
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
 		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
+		7C174882201A017100854348 /* String+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C174881201A017100854348 /* String+QRCode.swift */; };
 		7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */; };
 		7C4D07E22015C1730043C1C6 /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */; };
 		7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E32015C4810043C1C6 /* RouteBase.swift */; };
@@ -74,6 +75,7 @@
 		5A26129691EB662A5DF3E71C /* Pods-TravelHelp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.debug.xcconfig"; sourceTree = "<group>"; };
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
 		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C174881201A017100854348 /* String+QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+QRCode.swift"; sourceTree = "<group>"; };
 		7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
 		7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
 		7C4D07E32015C4810043C1C6 /* RouteBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBase.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		45F1477E1FE725C100666CB8 /* TravelHelp */ = {
 			isa = PBXGroup;
 			children = (
+				7C17487F201A013400854348 /* Extensions */,
 				7CB38628201861890014C6B8 /* TravelHelp.entitlements */,
 				7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */,
 				4537E56B200793EC00C2627B /* Services */,
@@ -276,6 +279,22 @@
 				7CB3862F2018CE8A0014C6B8 /* AccountsViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		7C17487F201A013400854348 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7C174880201A015800854348 /* String */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7C174880201A015800854348 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				7C174881201A017100854348 /* String+QRCode.swift */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 		7C4D07DE2015C0D70043C1C6 /* Routes */ = {
@@ -534,6 +553,7 @@
 				4537E57120079AF500C2627B /* AutorizationService.swift in Sources */,
 				45521F7A2005E97600775E10 /* RoutesViewController.swift in Sources */,
 				7CB386302018CE8A0014C6B8 /* AccountsViewController.swift in Sources */,
+				7C174882201A017100854348 /* String+QRCode.swift in Sources */,
 				45F147821FE725C100666CB8 /* LoginViewController.swift in Sources */,
 				4537E57A200889DB00C2627B /* CreateNewTravelViewController.swift in Sources */,
 				7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */,

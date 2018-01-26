@@ -14,6 +14,7 @@ import PKHUD
 
 class CreateNewTravelViewController: UIViewController {
    
+    @IBOutlet weak var showQRCodeButton: UIButton!
     @IBOutlet private weak var qrCodeImage: UIImageView!
     @IBOutlet private weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
@@ -35,6 +36,9 @@ class CreateNewTravelViewController: UIViewController {
     private var placesClient: GMSPlacesClient!
     private var imageModel: Image?
     private var travel: TravelBase?
+    private var placeStayArray: Array<String> = []
+    private var priceArray: Array<String> = []
+    private var requirementArray: Array<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +46,6 @@ class CreateNewTravelViewController: UIViewController {
         setupInterface()
         setupNotification()
         setupMap()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        qrCodeImage.image = qrcodeGenerator()
     }
     
     func setupGesture() {
@@ -61,6 +60,7 @@ class CreateNewTravelViewController: UIViewController {
         discriptionTextField.delegate = self
         nameTravelTextField.keyboardAppearance = .dark
         discriptionTextField.keyboardAppearance = .dark
+        qrCodeImage.isHidden = true
         
     }
     
@@ -68,6 +68,17 @@ class CreateNewTravelViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
+    
+    func setupQRCode() {
+        if nameTravelTextField.text != "",
+            startDatePicker.date.description != "",
+            endDatePicker.date.description != "",
+            discriptionTextField.text != ""{
+            let qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(startDatePicker.date.description)), end date = \(endDatePicker.date.description)), discription = \(String(describing: discriptionTextField.text))"
+            qrCodeImage.image = qrCodeString.qrcodeImage
+        }
+    }
+    
     
     @objc func keyBoardDidShow(notification: Notification) {
         if let view = view as? UIScrollView {
@@ -79,27 +90,6 @@ class CreateNewTravelViewController: UIViewController {
         if let view = view as? UIScrollView {
             view.setContentOffset(CGPoint(x:0,y:0), animated: true)
         }
-    }
-    
-    func qrcodeGenerator() -> UIImage {
-        var qrCodeString: String
-        if nameTravelTextField.text != "",
-           startDatePicker.date.description != "",
-           endDatePicker.date.description != "",
-           discriptionTextField.text != ""{
-             qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(startDatePicker.date.description)), end date = \(endDatePicker.date.description)), discription = \(String(describing: discriptionTextField.text))"
-        }else{
-           qrCodeString = ""
-        }
-        let myString = qrCodeString
-        let data = myString.data(using: .ascii, allowLossyConversion: true)
-        let filter = CIFilter(name: "CIQRCodeGenerator")
-        filter?.setValue(data, forKey: "inputMessage")
-        let transform = CGAffineTransform(scaleX: 10, y: 10)
-        let img = UIImage(ciImage: (filter?.outputImage?.transformed(by: transform))!)
-        qrCodeImage.image = img
-        
-        return img
     }
     
     @IBAction func create(_ sender: UIButton) {
@@ -173,43 +163,78 @@ class CreateNewTravelViewController: UIViewController {
     }
     
     @IBAction func addPlaceStayButton(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Add place stay", message: "place stay", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Add place stay", message: "Add place of residence to travel", preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Name place"
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "Price"
         }
-        
-        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: {
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             (alert) -> Void in
-            
             let namePlace = alertController.textFields![0] as UITextField
             let price = alertController.textFields![1] as UITextField
             
-            print("Email -- \(namePlace.text!), Password -- \(price.text!)")
+            self.placeStayArray.append(namePlace.text!)
         })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        alertController.addAction(submitAction)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
         alertController.view.tintColor = UIColor.black
         present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func addPriceButton(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Add price", message: "Add the expenses associated with the trip", preferredStyle: .alert)
+        if let popoverPresentationController = alertController.popoverPresentationController {
+            popoverPresentationController.sourceView = sender
+        }
         alertController.addTextField { (textField) in
             textField.placeholder = "Price"
             textField.keyboardType = .numberPad
         }
         alertController.addTextField { (textField) in
             textField.placeholder = "Price for"
+            textField.keyboardType = .default
         }
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
+            (alert) -> Void in
+            let namePlace = alertController.textFields!.first as! UITextField
+            let price = alertController.textFields!.dropFirst().first as! UITextField
+            print("Price -- \(namePlace.text!), Price for -- \(price.text!)")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        alertController.view.tintColor = UIColor.black
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func addRequirementButton(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Add price", message: "Add the expenses associated with the trip", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Requirement"
+            textField.keyboardType = .default
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
+            (alert) -> Void in
+            let requirement = alertController.textFields![0] as UITextField
+            print("Requirement -- \(requirement.text!)")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        alertController.view.tintColor = UIColor.black
+        present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func showQRcodeButton(_ sender: UIButton) {
+        qrCodeImage.isHidden = false
+        showQRCodeButton.isHidden = true
     }
 }
 
@@ -310,5 +335,43 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                 }
             }
         })
+    }
+}
+
+extension CreateNewTravelViewController: UITableViewDelegate {
+    
+}
+
+extension CreateNewTravelViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == routeTableView{
+            return places.count
+        }else if tableView == placeStayTableView{
+            return placeStayArray.count
+        }else if tableView == pricesTableView{
+            return priceArray.count
+        }else{
+            return requirementArray.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == routeTableView{
+            let cell = routeTableView.dequeueReusableCell(withIdentifier: "CellMap", for: indexPath)
+            cell.textLabel?.text = places[indexPath.row].placeID
+            return cell
+        }else if tableView == placeStayTableView{
+            let cell = placeStayTableView.dequeueReusableCell(withIdentifier: "CellStayPlace", for: indexPath)
+            cell.textLabel?.text = placeStayArray[indexPath.row]
+            return cell
+        }else if tableView == pricesTableView{
+            let cell = pricesTableView.dequeueReusableCell(withIdentifier: "CellPrices", for: indexPath)
+            cell.textLabel?.text = priceArray[indexPath.row]
+            return cell
+        }else{
+            let cell = requirementTableView.dequeueReusableCell(withIdentifier: "CellRequirement", for: indexPath)
+            cell.textLabel?.text = requirementArray[indexPath.row]
+            return cell
+        }
     }
 }
