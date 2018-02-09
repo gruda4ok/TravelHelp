@@ -7,6 +7,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - DGElasticPullToRefresh (1.1)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -80,6 +81,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
+  - JTMaterialTransition (2.0.1)
   - KeychainAccess (3.1.0)
   - Kingfisher (4.6.1)
   - leveldb-library (1.20)
@@ -89,10 +91,13 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - PKHUD (5.0.0)
+  - TKSubmitTransition (2.0)
+  - UIView+Shake (1.4.0)
 
 DEPENDENCIES:
   - AccountKit
   - Alamofire
+  - DGElasticPullToRefresh
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -103,14 +108,28 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - JTMaterialTransition (~> 2.0)
   - KeychainAccess
   - Kingfisher
   - PKHUD
+  - TKSubmitTransition (from `https://github.com/entotsu/TKSubmitTransition.git`, tag `2.0`)
+  - UIView+Shake
+
+EXTERNAL SOURCES:
+  TKSubmitTransition:
+    :git: https://github.com/entotsu/TKSubmitTransition.git
+    :tag: 2.0
+
+CHECKOUT OPTIONS:
+  TKSubmitTransition:
+    :git: https://github.com/entotsu/TKSubmitTransition.git
+    :tag: 2.0
 
 SPEC CHECKSUMS:
   AccountKit: 27d239ed0254b6cda6597df9d712b5aab8db6e24
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
   FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
@@ -129,12 +148,15 @@ SPEC CHECKSUMS:
   GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
+  JTMaterialTransition: 2350b44b404d1982a7ba755866cc65da452f4eec
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  TKSubmitTransition: 647b907508da58ba864141e3c4382442ec536d40
+  UIView+Shake: 055ad67721de1f74d29c0a1d464697e505dfc62f
 
-PODFILE CHECKSUM: 0253fc1079420bb14b4fc4c231161b565b075d07
+PODFILE CHECKSUM: 0579a53d34b04974f95fec5bfa0276955f2636e6
 
 COCOAPODS: 1.3.1

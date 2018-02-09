@@ -32,6 +32,7 @@
 		45F1478D1FE725C100666CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F1478B1FE725C100666CB8 /* LaunchScreen.storyboard */; };
 		7C0D00AD200DB6BC009BE180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */; };
 		7C174882201A017100854348 /* String+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C174881201A017100854348 /* String+QRCode.swift */; };
+		7C3AEDC6201F118A009B3C75 /* RouteSomeViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3AEDC5201F118A009B3C75 /* RouteSomeViewContoller.swift */; };
 		7C4D07E02015C11D0043C1C6 /* RoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */; };
 		7C4D07E22015C1730043C1C6 /* RoutesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */; };
 		7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D07E32015C4810043C1C6 /* RouteBase.swift */; };
@@ -76,6 +77,7 @@
 		61EFA18109ECEB6BD10A0D62 /* Pods-TravelHelp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TravelHelp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp.release.xcconfig"; sourceTree = "<group>"; };
 		7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C174881201A017100854348 /* String+QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+QRCode.swift"; sourceTree = "<group>"; };
+		7C3AEDC5201F118A009B3C75 /* RouteSomeViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSomeViewContoller.swift; sourceTree = "<group>"; };
 		7C4D07DF2015C11D0043C1C6 /* RoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewCell.swift; sourceTree = "<group>"; };
 		7C4D07E12015C1730043C1C6 /* RoutesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutesTableViewCell.xib; sourceTree = "<group>"; };
 		7C4D07E32015C4810043C1C6 /* RouteBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBase.swift; sourceTree = "<group>"; };
@@ -258,9 +260,9 @@
 		45F1477E1FE725C100666CB8 /* TravelHelp */ = {
 			isa = PBXGroup;
 			children = (
-				7C17487F201A013400854348 /* Extensions */,
 				7CB38628201861890014C6B8 /* TravelHelp.entitlements */,
 				7C0D00AC200DB6BB009BE180 /* GoogleService-Info.plist */,
+				7C17487F201A013400854348 /* Extensions */,
 				4537E56B200793EC00C2627B /* Services */,
 				4537E568200791C800C2627B /* Application */,
 				457DB9451FFFCE120024E908 /* Model */,
@@ -330,6 +332,7 @@
 			children = (
 				45521F792005E97600775E10 /* RoutesViewController.swift */,
 				7C4D07E82015D4270043C1C6 /* CreateNewRouteViewController.swift */,
+				7C3AEDC5201F118A009B3C75 /* RouteSomeViewContoller.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TravelHelp/Pods-TravelHelp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -469,9 +473,12 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JTMaterialTransition/JTMaterialTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TKSubmitTransition/TKSubmitTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/UIView+Shake/UIView_Shake.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -479,6 +486,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -487,9 +495,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTMaterialTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKSubmitTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_Shake.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -567,6 +578,7 @@
 				4501F0092008FF3F009E4582 /* TravelViewController.swift in Sources */,
 				4537E5802008DADC00C2627B /* TravelTableViewCell.swift in Sources */,
 				455B38C41FE73A900084DC35 /* MenuViewController.swift in Sources */,
+				7C3AEDC6201F118A009B3C75 /* RouteSomeViewContoller.swift in Sources */,
 				457DB9441FFFCE0C0024E908 /* UserModel.swift in Sources */,
 				45524B641FE9E6B500996F64 /* AnimationButton.swift in Sources */,
 				7C4D07E42015C4810043C1C6 /* RouteBase.swift in Sources */,

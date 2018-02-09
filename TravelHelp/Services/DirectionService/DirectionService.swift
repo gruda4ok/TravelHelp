@@ -27,7 +27,6 @@ class DirectionService{
                                     else{
                                         return
                                     }
-
                                     do{
                                         let direction = try JSONDecoder().decode(Direction.self, from: data)
                                         completion(direction)

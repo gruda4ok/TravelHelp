@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UIView_Shake
 
 class RegistrationNewPersonViewController: UIViewController {
 
@@ -58,7 +59,7 @@ class RegistrationNewPersonViewController: UIViewController {
             name != "",
             phone != ""
         else {
-            //displayWarnigLabel(withText: "Info is incorrecy")
+            self.view.shake()
             return
         }
         AutorizationService.shared.registerUser(email: email, password: password, name: name, phoneNumber: phone){ [weak self] in

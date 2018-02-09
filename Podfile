@@ -18,5 +18,9 @@ target 'TravelHelp' do
 	pod 'FacebookLogin'
 	pod 'FacebookShare'
 	pod 'KeychainAccess'
+	pod 'JTMaterialTransition', '~> 2.0'
+	pod 'UIView+Shake'
+	pod 'TKSubmitTransition', :git => 'https://github.com/entotsu/TKSubmitTransition.git', :tag => '2.0'
+	pod 'DGElasticPullToRefresh'
 
 end

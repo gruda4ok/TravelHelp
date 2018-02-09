@@ -15,6 +15,7 @@ class StorageService {
     static let shared = StorageService()
     var user: UserModel? = AutorizationService.shared.localUser
 
+    private init() {}
     
     //MARK: - AvatarImage
     

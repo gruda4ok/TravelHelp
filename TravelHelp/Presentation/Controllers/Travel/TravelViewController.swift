@@ -73,3 +73,4 @@ extension TravelViewController: UITableViewDataSource {
         performSegue(withIdentifier: String(describing: TravelSomeViewController.self), sender: travels[indexPath.row])
     }
 }
+

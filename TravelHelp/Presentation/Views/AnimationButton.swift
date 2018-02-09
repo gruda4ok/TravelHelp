@@ -10,7 +10,7 @@ import UIKit
 
 class AnimationButton: UIButton {
     
-    func shake(){
+    func shake1(){
         let shakeAnimation = CABasicAnimation(keyPath: "position")
         shakeAnimation.fromValue = NSValue(cgPoint: CGPoint(x: bounds.origin.x - 5, y: bounds.origin.y))
         shakeAnimation.byValue = NSValue(cgPoint: CGPoint(x:  bounds.origin.x  + 5, y: bounds.origin.y))

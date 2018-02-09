@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
 
 class RoutesViewController: UIViewController {
 
@@ -20,9 +21,7 @@ class RoutesViewController: UIViewController {
         super.viewDidLoad()
         setupInterface()
         setupNotification()
-        searchBar.delegate = self
-        searchBar.returnKeyType = .done
-        searchBar.keyboardAppearance = .dark
+        setupSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,15 +31,45 @@ class RoutesViewController: UIViewController {
         }
     }
     
+    func setupSearchBar(){
+        searchBar.delegate = self
+        searchBar.returnKeyType = .done
+        searchBar.keyboardAppearance = .dark
+        routesTableView.separatorStyle = .none
+    }
+    
     func setupInterface() {
         routesTableView.tableFooterView = UIView()
         routesTableView.register(UINib(nibName: String(describing: RoutesTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: RoutesTableViewCell.self))
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        routesTableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                self?.routesTableView.dg_stopLoading()
+            })
+            }, loadingView: loadingView)
+        routesTableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        routesTableView.dg_setPullToRefreshBackgroundColor(routesTableView.backgroundColor!)
+    }
+    
+    deinit {
+        routesTableView.dg_removePullToRefresh()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dvc = segue.destination as? RouteSomeViewContoller,
+            let route = sender as? RouteBase{
+            dvc.route = route
+        }
     }
     
     func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
+    
+    
     
     @objc func keyBoardDidShow(notification: Notification){
         if let view = view as? UIScrollView {
@@ -99,5 +128,8 @@ extension RoutesViewController: UITableViewDataSource {
     func reloadTableView(routes: Array<RouteBase>) {
         self.routesArray = routes
         routesTableView.reloadData()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: String(describing: RouteSomeViewContoller.self), sender: routesArray[indexPath.row])
     }
 }

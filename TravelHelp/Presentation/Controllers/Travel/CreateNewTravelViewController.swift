@@ -14,7 +14,7 @@ import PKHUD
 
 class CreateNewTravelViewController: UIViewController {
    
-    @IBOutlet weak var showQRCodeButton: UIButton!
+    @IBOutlet private weak var showQRCodeButton: UIButton!
     @IBOutlet private weak var qrCodeImage: UIImageView!
     @IBOutlet private weak var mapView: UIView!
     @IBOutlet private weak var travelPhotoImage: UIImageView!
@@ -32,6 +32,7 @@ class CreateNewTravelViewController: UIViewController {
     private var map: GMSMapView!
     private var marker: GMSMarker!
     private var places: Array<GMSPlace> = []
+    private var placesName: Array<String> = []
     private var user: UserModel? = AutorizationService.shared.localUser
     private var placesClient: GMSPlacesClient!
     private var imageModel: Image?
@@ -141,6 +142,7 @@ class CreateNewTravelViewController: UIViewController {
     @IBAction func pickPlace(_ sender: UIButton) {
         let config = GMSPlacePickerConfig(viewport: nil)
         let placePicker = GMSPlacePickerViewController(config: config)
+        placePicker.delegate = self
         present(placePicker, animated: true, completion: nil)
     }
     
@@ -167,15 +169,12 @@ class CreateNewTravelViewController: UIViewController {
         alertController.addTextField { (textField) in
             textField.placeholder = "Name place"
         }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Price"
-        }
+    
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             (alert) -> Void in
-            let namePlace = alertController.textFields![0] as UITextField
-            let price = alertController.textFields![1] as UITextField
-            
-            self.placeStayArray.append(namePlace.text!)
+            let namePlace = alertController.textFields!.first
+            self.placeStayArray.append((namePlace?.text)!)
+            self.placeStayTableView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -200,12 +199,12 @@ class CreateNewTravelViewController: UIViewController {
         }
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             (alert) -> Void in
-            let namePlace = alertController.textFields!.first as! UITextField
-            let price = alertController.textFields!.dropFirst().first as! UITextField
-            print("Price -- \(namePlace.text!), Price for -- \(price.text!)")
+            let price = alertController.textFields?.first
+            //let priceFor = alertController.textFields!.dropFirst().first
+            self.priceArray.append((price?.text)!)
+            self.pricesTableView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
         alertController.view.tintColor = UIColor.black
@@ -220,8 +219,9 @@ class CreateNewTravelViewController: UIViewController {
         }
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             (alert) -> Void in
-            let requirement = alertController.textFields![0] as UITextField
-            print("Requirement -- \(requirement.text!)")
+            let requirement = alertController.textFields?.first
+            self.requirementArray.append((requirement?.text!)!)
+            self.requirementTableView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -233,8 +233,16 @@ class CreateNewTravelViewController: UIViewController {
     }
     
     @IBAction func showQRcodeButton(_ sender: UIButton) {
+        var qrCodeString = ""
         qrCodeImage.isHidden = false
         showQRCodeButton.isHidden = true
+        if nameTravelTextField.text != "",
+            startDatePicker.date.description != "",
+            endDatePicker.date.description != "",
+            discriptionTextField.text != ""{
+             qrCodeString = "Name = \(String(describing: nameTravelTextField.text)),date start = \(startDatePicker.date.description)), end date = \(endDatePicker.date.description)), discription = \(String(describing: discriptionTextField.text))"
+        }
+        qrCodeImage.image = qrCodeString.qrcodeImage
     }
 }
 
@@ -282,6 +290,8 @@ extension  CreateNewTravelViewController: UITextFieldDelegate {
 extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         places.append(place)
+        placesName.append(place.name)
+        routeTableView.reloadData()
         marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.map = map
@@ -301,8 +311,8 @@ extension CreateNewTravelViewController: GMSAutocompleteViewControllerDelegate {
                     }
                 }
             })
-        dismiss(animated: true, completion: nil)
         }
+        dismiss(animated: true, completion: nil)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -345,7 +355,7 @@ extension CreateNewTravelViewController: UITableViewDelegate {
 extension CreateNewTravelViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == routeTableView{
-            return places.count
+            return placesName.count
         }else if tableView == placeStayTableView{
             return placeStayArray.count
         }else if tableView == pricesTableView{
@@ -358,7 +368,7 @@ extension CreateNewTravelViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == routeTableView{
             let cell = routeTableView.dequeueReusableCell(withIdentifier: "CellMap", for: indexPath)
-            cell.textLabel?.text = places[indexPath.row].placeID
+            cell.textLabel?.text = placesName[indexPath.row]
             return cell
         }else if tableView == placeStayTableView{
             let cell = placeStayTableView.dequeueReusableCell(withIdentifier: "CellStayPlace", for: indexPath)
@@ -373,5 +383,11 @@ extension CreateNewTravelViewController: UITableViewDataSource {
             cell.textLabel?.text = requirementArray[indexPath.row]
             return cell
         }
+    }
+}
+
+extension CreateNewTravelViewController: GMSPlacePickerViewControllerDelegate {
+    func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
